@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start-screen": "node devserver.js screen",
     "start-mobile": "node devserver.js mobile",
-	"build-screen": "node_modules/.bin/webpack --config client_screen/webpack.config.js",
-	"build-mobile": "node_modules/.bin/webpack --config client_mobile/webpack.config.js"
+    "build-screen": "node_modules/.bin/webpack --config client_screen/webpack.config.js",
+    "build-mobile": "node_modules/.bin/webpack --config client_mobile/webpack.config.js"
   },
   "author": "",
   "license": "MIT",
@@ -20,6 +20,8 @@
     "pg": "^6.1.5",
     "react": "15.4.2",
     "react-dom": "15.4.2",
+    "react-router": "^4.0.0",
+    "react-router-dom": "^4.0.0",
     "socket.io": "^1.7.3"
   },
   "devDependencies": {
