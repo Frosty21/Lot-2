@@ -1,26 +1,21 @@
 const path = require('path');
-const fs = require('fs');
 const express = require('express');
-const cookieSession  = require('cookie-session');
 const db = require('./lib/functions.js');
 const morgan = require('morgan');
 const app = express();
 
-app.use(express.static(path.join(__dirname, 'client_screen/build')));
-
 const server = app.listen(3001);
+const io = require('./lib/sockets')(server);
 console.log('Server listening on port 3001');
 
-const io = require('./lib/sockets')(server);
-
-// Middleware:
-app.use(cookieSession({
-  name: 'session',
-  keys: ["eec666442edbb434c822db6fdfe204d004c3d7b1"],
-  maxAge: 246060100
-}));
-
+app.use(express.static(path.join(__dirname, 'client_screen/build')));
 app.use(morgan('dev'));
+
+const login = require('./routes/login')(db);
+const register = require('./routes/register')(db);
+
+app.use('/api/login', login);
+app.use('/api/register', register);
 
 
 
