@@ -11,7 +11,6 @@ CREATE TABLE users (
 CREATE TABLE games (
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(500) NOT NULL,
-  question_id INTEGER NOT NULL,
   timer_length INTEGER NOT NULL
 );
 

@@ -1,5 +1,5 @@
-const io = require('socket.io-client')
 import React, {Component} from 'react';
+import JoinRoom from './JoinRoom.jsx';
 import Room from './Room.jsx';
 
 export default class App extends Component {
@@ -11,31 +11,32 @@ export default class App extends Component {
       startTime: 0,
       endTime: 0,
       gameId: 0,
-      roomId: 0
+      roomId: 0,
+      loadTimer: 10,
+      gameEnd: 0,
+      startGame: 0
     };
-    
-    this.handleClick = this.handleClick.bind(this);
+    this.handleClickPlay = this.handleClickPlay.bind(this);
+    this.handleClickUser = this.handleClickUser.bind(this);  
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.socket = io('http://localhost:3001');
   }
-  
-  componentDidMount() {
-    this.socket.on('data', (data) => {
-      console.log('componentDidMount: ', data);
-    });
+
+  handleClickUser(e){
+    console.log(e);
+    let newUser = this.state.users;
+    this.setState({ users: newUser.concat('user') })
   }
-  
-  handleClick() {
-    console.log('handleClick');
-    this.socket.emit('data');
-    this.setState({ connectionData: "test"})
+
+  handleClickPlay(e){
+    console.log(e);
+    this.setState({ startGame: 1 });
   }
 
   handleKeyPress(event) {
     if(event.key === 'Enter'){
       console.log('enter');
-      this.socket.emit('data', event.target.value);
+      this.setState({ roomId: event.target.value });
     }
   }
 
@@ -44,10 +45,18 @@ export default class App extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <Room handleSubmit={this.handleSubmit} handleKeyPress={this.handleKeyPress} handleClick={this.handleClick} />
-      </div>
-    )
+    if( this.state.roomId == 0 ){
+      return (
+        <div>
+          <JoinRoom handleSubmit={this.handleSubmit} handleKeyPress={this.handleKeyPress} />
+        </div>
+      )    
+    } else if( this.state.roomId >= 1 ){
+      return (
+        <div>
+          <Room startGame={this.state.startGame} gameEnd={this.state.gameEnd} handleClickPlay={this.handleClickPlay} handleClickUser={this.handleClickUser} LoadTimer={this.state.loadTimer} RoomId={this.state.roomId} Users={this.state.users} Scores={this.state.scores} StartTime={this.state.startTime} EndTime={this.state.endTime} GameId={this.state.gameId} />
+        </div>
+      )
+    }
   }
 }
