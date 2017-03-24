@@ -1,0 +1,43 @@
+19:22:43.721 INFO  Listening on 3001 
+19:24:06.803 INFO  Client connected 1 
+19:24:10.603 INFO  Client disconnected[] 
+19:24:10.759 INFO  Client connected 1 
+19:24:13.918 INFO  received: %s{"type":"incMessage","username":"Godzilla","content":"hi","color":"#00ccff","id":"a47598d0-0822-11e7-8202-27271b2f6fa2"} 
+19:24:14.820 INFO  received: %s{"type":"incMessage","username":"Godzilla","content":"hi","color":"#00ccff","id":"a4ff6240-0822-11e7-8202-27271b2f6fa2"} 
+19:24:14.932 INFO  received: %s{"type":"incMessage","username":"Godzilla","content":"hi","color":"#00ccff","id":"a5107940-0822-11e7-8202-27271b2f6fa2"} 
+19:24:15.257 INFO  received: %s{"type":"incMessage","username":"Godzilla","content":"hi","color":"#00ccff","id":"a541e980-0822-11e7-8202-27271b2f6fa2"} 
+19:24:20.816 INFO  received: %s{"type":"incMessage","username":"Godzilla","content":"lkjasdf","color":"#00ccff","id":"a8924d00-0822-11e7-8202-27271b2f6fa2"} 
+19:24:20.946 INFO  received: %s{"type":"incMessage","username":"Godzilla","content":"lkjasdf","color":"#00ccff","id":"a8a62320-0822-11e7-8202-27271b2f6fa2"} 
+19:24:21.090 INFO  received: %s{"type":"incMessage","username":"Godzilla","content":"lkjasdf","color":"#00ccff","id":"a8bbf510-0822-11e7-8202-27271b2f6fa2"} 
+19:24:26.417 INFO  received: %s{"type":"incNotify","content":"Godzilla has changed their name to asdf","id":"abe8f210-0822-11e7-8202-27271b2f6fa2"} 
+19:24:26.526 INFO  received: %s{"type":"incNotify","content":"asdf has changed their name to asdf","id":"abf993e0-0822-11e7-8202-27271b2f6fa2"} 
+19:24:26.685 INFO  received: %s{"type":"incNotify","content":"asdf has changed their name to asdf","id":"ac11d6d0-0822-11e7-8202-27271b2f6fa2"} 
+19:24:28.318 INFO  received: %s{"type":"incMessage","username":"asdf","content":"asdf","color":"#00ccff","id":"ad0adcd0-0822-11e7-8202-27271b2f6fa2"} 
+19:24:28.439 INFO  received: %s{"type":"incMessage","username":"asdf","content":"asdf","color":"#00ccff","id":"ad1d7a70-0822-11e7-8202-27271b2f6fa2"} 
+19:24:28.553 INFO  received: %s{"type":"incMessage","username":"asdf","content":"asdf","color":"#00ccff","id":"ad2edf90-0822-11e7-8202-27271b2f6fa2"} 
+19:46:12.273 INFO  Client disconnected[] 
+19:46:12.497 INFO  Client connected 1 
+19:46:15.150 INFO  received: %s{"type":"incMessage","username":"Godzilla","content":"test","color":"#00ccff","id":"b7f9c0e0-0825-11e7-8202-27271b2f6fa2"} 
+19:46:16.296 INFO  received: %s{"type":"incMessage","username":"Godzilla","content":"test","color":"#00ccff","id":"b8a89e80-0825-11e7-8202-27271b2f6fa2"} 
+19:46:17.096 INFO  received: %s{"type":"incMessage","username":"Godzilla","content":"test","color":"#00ccff","id":"b9228970-0825-11e7-8202-27271b2f6fa2"} 
+19:46:17.917 INFO  received: %s{"type":"incMessage","username":"Godzilla","content":"test","color":"#00ccff","id":"b99fcfc0-0825-11e7-8202-27271b2f6fa2"} 
+19:48:16.658 INFO  received: %s{"type":"incMessage","username":"Godzilla","content":"asdf","color":"#00ccff","id":"00666720-0826-11e7-8202-27271b2f6fa2"} 
+19:48:17.461 INFO  received: %s{"type":"incMessage","username":"Godzilla","content":"asdfsdf","color":"#00ccff","id":"00e0ee50-0826-11e7-8202-27271b2f6fa2"} 
+19:48:17.657 INFO  received: %s{"type":"incMessage","username":"Godzilla","content":"asdfsdf","color":"#00ccff","id":"00fed690-0826-11e7-8202-27271b2f6fa2"} 
+20:32:52.771 INFO  received: %s{"type":"incMessage","username":"Godzilla","content":"asdfsdf","color":"#00ccff","id":"3b7cb020-082c-11e7-8202-27271b2f6fa2"} 
+20:32:53.729 INFO  received: %s{"type":"incMessage","username":"Godzilla","content":"asd","color":"#00ccff","id":"3c0f0510-082c-11e7-8202-27271b2f6fa2"} 
+20:32:53.849 INFO  received: %s{"type":"incMessage","username":"Godzilla","content":"asd","color":"#00ccff","id":"3c215490-082c-11e7-8202-27271b2f6fa2"} 
+20:32:54.093 INFO  received: %s{"type":"incMessage","username":"Godzilla","content":"asd","color":"#00ccff","id":"3c468fd0-082c-11e7-8202-27271b2f6fa2"} 
+20:32:54.220 INFO  received: %s{"type":"incMessage","username":"Godzilla","content":"asd","color":"#00ccff","id":"3c59f0c0-082c-11e7-8202-27271b2f6fa2"} 
+20:34:31.799 INFO  Client disconnected[] 
+20:35:09.976 INFO  Client connected 1 
+20:35:25.828 INFO  Client disconnected[] 
+20:35:26.072 INFO  Client connected 1 
+20:35:36.653 INFO  received: %s{"type":"incMessage","username":"Godzilla","content":"test","color":"#00ccff","id":"9d2b3fd0-082c-11e7-8202-27271b2f6fa2"} 
+20:37:17.676 INFO  Listening on 3001 
+20:37:45.899 INFO  Listening on 3001 
+20:38:28.092 INFO  Listening on 3001 
+20:38:30.968 INFO  Client connected 1 
+20:38:38.708 INFO  received: %s{"type":"incNotify","content":"Godzilla has changed their name to name","id":"09ae7c30-082d-11e7-adda-6de828796ab8"} 
+20:38:41.695 INFO  received: %s{"type":"incMessage","username":"name","content":"test","color":"#00ccff","id":"0b766af0-082d-11e7-adda-6de828796ab8"} 
+20:39:15.632 INFO  Listening on 3001 

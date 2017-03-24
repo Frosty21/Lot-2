@@ -1,0 +1,40 @@
+{
+  "name": "LoT",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-screen": "node devserver.js screen",
+    "start-mobile": "node devserver.js mobile",
+	"build-screen": "node_modules/.bin/webpack --config client_screen/webpack.config.js",
+	"build-mobile": "node_modules/.bin/webpack --config client_mobile/webpack.config.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "cookie-session": "^2.0.0-beta.1",
+    "express": "4.15.2",
+    "knex": "^0.12.8",
+    "morgan": "^1.8.1",
+    "pg": "^6.1.5",
+    "react": "15.4.2",
+    "react-dom": "15.4.2",
+    "socket.io": "^1.7.3"
+  },
+  "devDependencies": {
+    "babel-core": "6.24.0",
+    "babel-loader": "6.4.1",
+    "babel-preset-es2015": "6.24.0",
+    "babel-preset-react": "6.23.0",
+    "babel-preset-stage-0": "6.22.0",
+    "css-loader": "0.27.3",
+    "eslint": "3.18.0",
+    "eslint-plugin-react": "6.10.3",
+    "node-sass": "4.5.1",
+    "sass-loader": "6.0.3",
+    "style-loader": "0.16.0",
+    "webpack": "2.3.1",
+    "webpack-dev-server": "2.4.2"
+  }
+}
