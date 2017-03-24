@@ -1,11 +1,89 @@
-h1 {
-  color: #3c181c;
+.head-text {
+  margin: auto;
 }
 
-body {
-      background: black;
-      color: white;
-      font-family: 'Open Sans', sans-serif;
-      font-size: 14px;
-      margin: 70px 0;
+.main {
+  max-width: 730px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+
+  display: flex;
+  align-items: center;
+}
+
+.links {
+  margin-bottom: 30px;
+}
+
+.back-button {
+  float: right;
+}
+
+.card {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+}
+
+.winner .card {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  background-color: #02c93a;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+  margin:0 auto;
+  margin-bottom: 30px;
+}
+
+.user-score .card {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+  margin:0 auto;
+  margin-top: 20px;
+}
+
+.card-img-top {
+  height: 100%;
+  width: 100%;
+}
+
+.card-block {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 1.25rem;
 }
