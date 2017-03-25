@@ -10,7 +10,8 @@ import Buttons from './Buttons.jsx';
 import SignIn from './SignIn.jsx';
 import SignUp from './SignUp.jsx';
 import SignedInIndex from './SignedInIndex.jsx';
-import Gamelobby from './Gamelobby.jsx'
+import Gamelobby from './Gamelobby.jsx';
+import NavigationBar from './NavigationBar.jsx';
 
 export default class App extends Component {
   constructor(props) {
@@ -20,52 +21,19 @@ export default class App extends Component {
       showSignUp: false
     };
     this.socket = io('http://localhost:3001');
-    this.handleClickSignIn = this.handleClickSignIn.bind(this);
-    this.handleClickSignUp = this.handleClickSignUp.bind(this);
 
   }
 
     componentDidMount() {
   }
 
-  handleClickSignIn() {
-    console.log('The link was clicked.');
-    this.setState({showSignIn: true});
-  }
-
-  handleClickSignUp() {
-    console.log('The link was clicked.');
-    this.setState({showSignUp: true});
-  }
-
-
   render() {
-    const showSignIn = this.state.showSignIn;
-    const showSignUp = this.state.showSignUp;
-
-    let form = null;
-    if (showSignIn) {
-      form = <SignIn />;
-    } else {
-      form = null;
-    }
-
-    let sUp = null;
-    if (showSignUp) {
-      sUp = <SignUp />;
-    } else {
-      sUp = null;
-    }
 
     return (
 
       <section className="main">
-        <Banner/>
-        <Buttons handleClickSignIn={this.handleClickSignIn} handleClickSignUp={this.handleClickSignUp} />
-        {form}
-        {sUp}
-        <SignedInIndex />
-        <Gamelobby />
+        <NavigationBar />
+        {this.props.children}
       </section>
 
     )
