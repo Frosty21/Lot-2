@@ -9,6 +9,8 @@ import Banner from './Banner.jsx';
 import Buttons from './Buttons.jsx';
 import SignIn from './SignIn.jsx';
 import SignUp from './SignUp.jsx';
+import SignedInIndex from './SignedInIndex.jsx';
+import Gamelobby from './Gamelobby.jsx'
 
 export default class App extends Component {
   constructor(props) {
@@ -62,6 +64,8 @@ export default class App extends Component {
         <Buttons handleClickSignIn={this.handleClickSignIn} handleClickSignUp={this.handleClickSignUp} />
         {form}
         {sUp}
+        <SignedInIndex />
+        <Gamelobby />
       </section>
 
     )
