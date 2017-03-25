@@ -5,17 +5,21 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start-screen": "node devserver.js screen",
-    "start-mobile": "node devserver.js mobile",
-	"build-screen": "node_modules/.bin/webpack --config client_screen/webpack.config.js",
-	"build-mobile": "node_modules/.bin/webpack --config client_mobile/webpack.config.js"
+    "start":        "DEBUG=express:* node server.js",
+    "start-screen": "DEBUG=express:* node devserver.js screen",
+    "start-mobile": "DEBUG=express:* node devserver.js mobile",
+    "build-screen": "node_modules/.bin/webpack --config client_screen/webpack.config.js",
+    "build-mobile": "node_modules/.bin/webpack --config client_mobile/webpack.config.js"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "^1.0.2",
+    "body-parser": "^1.17.1",
     "cookie-session": "^2.0.0-beta.1",
     "express": "4.15.2",
-    "knex": "^0.12.8",
+    "jsonwebtoken": "^7.3.0",
+    "knex": "^0.12.9",
     "morgan": "^1.8.1",
     "pg": "^6.1.5",
     "react": "15.4.2",
