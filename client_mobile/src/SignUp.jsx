@@ -26,7 +26,7 @@ export default class SignUp extends Component {
   }
   render() {
     return (
-      <div>
+      <section className="main">
       <NavigationBar />
       <form onSubmit={this.onSubmit}>
         <h1>Sign up today!</h1>
@@ -97,7 +97,7 @@ export default class SignUp extends Component {
           <button className="btn btn-primary">Submit</button>
         </div>
       </form>
-      </div>
+      </section>
     )
   }
 }
