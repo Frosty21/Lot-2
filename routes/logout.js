@@ -1,10 +1,10 @@
 const logout  = require('express').Router();
 
-module.exports = (db) => {
+module.exports = () => {
 
   logout.get('/', (req, res) => {
     console.log('logout');
-    req.session = null;
+    // delete token?
   });
   return logout;
 }

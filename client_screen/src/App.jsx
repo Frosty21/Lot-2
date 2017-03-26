@@ -1,3 +1,4 @@
+const axios = require('axios');
 import React, {Component} from 'react';
 import JoinRoom from './JoinRoom.jsx';
 import Room from './Room.jsx';
@@ -14,7 +15,8 @@ export default class App extends Component {
       roomId: 0,
       loadTimer: 10,
       gameEnd: 0,
-      startGame: 0
+      startGame: 0,
+      token: ''
     };
     this.handleClickPlay = this.handleClickPlay.bind(this);
     this.handleClickUser = this.handleClickUser.bind(this);  
@@ -36,7 +38,16 @@ export default class App extends Component {
   handleKeyPress(event) {
     if(event.key === 'Enter'){
       console.log('enter');
-      this.setState({ roomId: event.target.value });
+
+      axios.post('/login', {
+        screen: event.target.value
+      }).then( (res) => {
+        res = JSON.parse(res)
+        console.log('back', res.request.response);
+        this.setState({ token: res.token, roomId: event.target.value });
+      }).catch( (err) => {
+        console.log(err);
+      });
     }
   }
 
@@ -54,7 +65,7 @@ export default class App extends Component {
     } else if( this.state.roomId >= 1 ){
       return (
         <div>
-          <Room startGame={this.state.startGame} gameEnd={this.state.gameEnd} handleClickPlay={this.handleClickPlay} handleClickUser={this.handleClickUser} LoadTimer={this.state.loadTimer} RoomId={this.state.roomId} Users={this.state.users} Scores={this.state.scores} StartTime={this.state.startTime} EndTime={this.state.endTime} GameId={this.state.gameId} />
+          <Room token={this.state.token} startGame={this.state.startGame} gameEnd={this.state.gameEnd} handleClickPlay={this.handleClickPlay} handleClickUser={this.handleClickUser} LoadTimer={this.state.loadTimer} RoomId={this.state.roomId} Users={this.state.users} Scores={this.state.scores} StartTime={this.state.startTime} EndTime={this.state.endTime} GameId={this.state.gameId} />
         </div>
       )
     }
