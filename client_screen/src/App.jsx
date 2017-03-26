@@ -37,16 +37,15 @@ export default class App extends Component {
 
   handleKeyPress(event) {
     if(event.key === 'Enter'){
+      const roomNumber = event.target.value;
       console.log('enter');
 
       axios.post('/login', {
-        screen: event.target.value
+        screen: roomNumber
       }).then( (res) => {
-        res = JSON.parse(res)
-        console.log('back', res.request.response);
-        this.setState({ token: res.token, roomId: event.target.value });
-      }).catch( (err) => {
-        console.log(err);
+        const token = JSON.parse(res.request.response);
+        console.log('back', token.token);
+        this.setState({ token: token.token, roomId: roomNumber });
       });
     }
   }
