@@ -27,7 +27,6 @@ export default class SignUp extends Component {
   render() {
     return (
       <section className="main">
-      <NavigationBar />
       <form onSubmit={this.onSubmit}>
         <h1>Sign up today!</h1>
 
