@@ -5,7 +5,7 @@ export default class ChildFirst extends Component {
   render() {
     return (
       <main className="child">
-        {this.props.ChildFirstList.map((item) => {
+        {this.props.ChildFirstList}.map((item) => {
           if(item.key === 'value') {
             return (
               <div>

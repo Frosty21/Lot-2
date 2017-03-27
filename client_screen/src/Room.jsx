@@ -3,18 +3,44 @@ import React, {Component} from 'react';
 import GameLoad from './GameLoad.jsx';
 import GamePlay from './GamePlay.jsx';
 import GameEnd from './GameEnd.jsx';
+import Player from './Player.jsx';
 
 export default class Room extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      players: [],
+      gameId: 0,
+      curRound: 0,
+      maxRound: 5,
+      gameQuestion: []
+      // gameQuestion['Question', 'RightAnswer', 'WrongAnswer1', 'WrongAnswer2', 'WrongAnswer3]
+    }
     this.socket = io.connect('http://localhost:3001', {
       query: 'token=' + this.props.token
     });
   }
 
   componentDidMount () {
-    this.socket.on('data', (data) => {
+    const room = this.props.RoomId;
+    
+    this.socket.on(room, (data) => {
       console.log(data);
+      if (data.player.length > 0){
+        const play = this.state.players;
+        this.setState({ 
+          players: play.concat(data.player),
+          gameId: data.gameId,
+        });
+      } else if (data.gameId > 0 && this.state.gameId <= 0) {
+        this.setState({ gameId: data.gameId})
+      } else if (data.curRound > 0 && this.state.curRound <= this.state.maxRound && data.gameQuestion.length === 4) {
+        // Will have questions and answers with current round
+        this.setState({ 
+          curRound: data.curRound,
+          gameQuestion: data.gameQuestion 
+        });
+      }
     }).on('disconnect', () => {
       console.log('disconnected');
     });
@@ -26,9 +52,12 @@ export default class Room extends Component {
       return (
         <div>
           <h1>You have joined Room {this.props.RoomId}</h1> <br />
-          <h3>We require a minimum of 4 Users to join...[{this.props.Users.length}]</h3>
-          <button onClick={this.props.handleClickUser}>Add User</button>
-          <button onClick={this.props.handleClickPlay}>Start Gsme</button>
+          <h3>We require a minimum of 4 Users to join...[{this.state.players.length}]</h3>
+          {this.state.players}.map( (item) => {
+            <Player item={this.state.item} />
+          });
+          <button onClick={this.props.handleClickUser}>Add Us3r</button>
+          <button onClick={this.props.handleClickPlay}>Start G4me</button>
           <p>.. From here, we show users joining, and next component is the Game + Questions</p>
           <p>Token: {this.props.token}</p>
         </div>
