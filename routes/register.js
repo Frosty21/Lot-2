@@ -1,25 +1,26 @@
 const register = require('express').Router();
+const bcrypt = require('bcrypt');
 
 module.exports = (db) => {
 
   register.post('/', (req, res) => {
     console.log('register');
-    if ( req.session.user ) {
-      res.redirect(200, '/');
-      return;
-    }
+    // TODO: Check if user is already logged in
+
     // saltrounds = 10;
     bcrypt.hash(req.body.password, 10).then( (hash) => {
+      console.log(req.body);
       let userPack = {
         'email': req.body.email,
-        'firstname': req.body.firstname,
-        'lastname': req.body.lastname,
+        'first_name': req.body.first_name,
+        'last_name': req.body.last_name,
         'username': req.body.username,
-        'password': hash,
+        'hash': hash,
         'date': new Date
       }
-      db.createNewUser(userPack, (res) => {
-        // user registered, 
+      db.createNewUser(userPack, (ret) => {
+        console.log('db return: ',ret);
+        res.send('true');
         return;
       });
     });

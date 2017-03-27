@@ -1,4 +1,5 @@
 const io = require('socket.io-client')
+const axios = require('axios');
 import React, {Component} from 'react';
 import Banner from './Banner.jsx';
 import SignIn from './SignIn.jsx';
@@ -11,15 +12,46 @@ export default class App extends Component {
     super(props);
     this.state = {
       showSignIn: false,
-      showSignUp: false
+      showSignUp: false,
+      registered: 0,
+      username: '',
+      email: '',
+      first_name: '',
+      last_name: '',
+      password: '',
+      password_confirmation: '',
     };
     this.socket = io('http://localhost:3001');
+    this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this);
+    this.handleRegisterChange = this.handleRegisterChange.bind(this);
     this.handleClickSignIn = this.handleClickSignIn.bind(this);
     this.handleClickSignUp = this.handleClickSignUp.bind(this);
-
   }
 
-    componentDidMount() {
+  handleRegisterChange (e) {
+    console.log(e.target);
+    this.setState({ [e.target.name]: e.target.value})
+  }
+
+  handleRegisterSubmit (e) {
+    e.preventDefault();
+
+    // TODO: check passwords are the same
+
+    axios.post('/register', {
+      username: this.state.username,
+      email: this.state.email,
+      first_name: this.state.first_name,
+      last_name: this.state.last_name,
+      password: this.state.password
+    }).then( (res) => {
+      console.log('POST RETURNED: ', res);
+      if (res === true) {
+        this.setState({ registered: 1 });
+      }
+    }).catch( (err) => {
+      console.log(err);
+    });
   }
 
   handleClickSignIn() {
@@ -44,20 +76,14 @@ export default class App extends Component {
       form = null;
     }
 
-    let sUp = null;
-    if (showSignUp) {
-      sUp = <SignUp />;
-    } else {
-      sUp = null;
-    }
-
     return (
 
       <section className="main">
         <NavigationBar handleClickSignIn={this.handleClickSignIn} handleClickSignUp={this.handleClickSignUp}/>
         <Banner />
-        {form}
-        {sUp}
+        if (showSignUp) {
+          <SignUp password_confirmation={this.state.password_confirmation} password={this.state.password} email={this.state.email} last_name={this.state.last_name} first_name={this.state.first_name} username={this.state.username} handleSubmit={this.handleRegisterSubmit} handleChange={this.handleRegisterChange} />
+        }
         <SignedInIndex />
       </section>
 

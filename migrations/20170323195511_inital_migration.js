@@ -2,11 +2,11 @@ exports.up = function(knex, Promise) {
   return Promise.all([
     knex.schema.createTable('users', (table) => {
       table.increments();
-      table.string('email', 20).notNullable();
-      table.string('first_name', 20).notNullable();
-      table.string('last_name', 20).notNullable();
-      table.string('username', 32).notNullable();
-      table.string('password', 36).notNullable();
+      table.string('email', 128).notNullable();
+      table.string('first_name', 128).notNullable();
+      table.string('last_name', 128).notNullable();
+      table.string('username', 128).notNullable();
+      table.string('password', 512).notNullable();
       table.date('register_date');
     }),
     knex.schema.createTable('games', (table) => {
@@ -17,11 +17,11 @@ exports.up = function(knex, Promise) {
     }),
     knex.schema.createTable('questions', function(table) {
       table.increments();
-      table.string('question', 140).notNullable();
-      table.string('correct_answer', 140).notNullable();
-      table.string('wrong_answer_1', 140).notNullable();
-      table.string('wrong_answer_2', 140).notNullable();
-      table.string('wrong_answer_3', 140).notNullable();
+      table.string('question', 1024).notNullable();
+      table.string('correct_answer', 512).notNullable();
+      table.string('wrong_answer_1', 512).notNullable();
+      table.string('wrong_answer_2', 512).notNullable();
+      table.string('wrong_answer_3', 512).notNullable();
     }),
     knex.schema.createTable('games_questions', function(table) {
       table.increments();
