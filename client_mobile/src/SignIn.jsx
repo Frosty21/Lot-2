@@ -23,7 +23,6 @@ export default class SignIn extends Component {
   render() {
     return (
       <section className="main">
-        <NavigationBar />
         <form>
           <div className="form-group">
             <label htmlFor="username">Username: </label>

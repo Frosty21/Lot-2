@@ -7,7 +7,7 @@ export default class Banner extends Component {
       <main className="main">
           <div className="jumbotron vertical-center">
             <div className="container text-center">
-              <h1 className="head-text">Trivia101</h1>
+              <h1 className="head-text">Legends of Trivia</h1>
             </div>
           </div>
       </main>
