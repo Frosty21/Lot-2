@@ -3,7 +3,7 @@ const webpack = require('webpack');
 
 module.exports = function(root) {
   return {
-  devtool: 'source-map', 
+  devtool: 'source-map',
   entry: [
     'webpack-dev-server/client?http://localhost:3000',
     root + '/src/index.jsx'

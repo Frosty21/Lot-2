@@ -1,38 +1,21 @@
 import React, {Component} from 'react';
 import NavigationBar from './NavigationBar.jsx';
 
-
 export default class SignIn extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: '',
-      password: '',
-    }
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-  }
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value})
-  }
 
-  onSubmit(e) {
-    e.preventDefault();
-    console.log(this.state);
-  }
   render() {
     return (
       <section className="main">
-        <form>
+        <form onSubmit={this.props.handleSignInSubmit}>
           <div className="form-group">
-            <label htmlFor="username">Username: </label>
+            <label htmlFor="username">Email: </label>
             <input
-              type="text"
+              type="email"
               className="form-control"
-              name="username"
-              placeholder="Enter Username"
-              value={this.state.username}
-              onChange={this.onChange} />
+              name="email"
+              placeholder="Enter email"
+              value={this.props.email}
+              onChange={this.props.handleChange} />
           </div>
           <div className="form-group">
             <label htmlFor="password">Password: </label>
@@ -41,10 +24,12 @@ export default class SignIn extends Component {
               className="form-control"
               name="password"
               placeholder="Password"
-              value={this.state.password}
-              onChange={this.onChange} />
+              value={this.props.password}
+              onChange={this.props.handleChange} />
           </div>
-          <button type="submit" className="btn btn-primary">Submit</button>
+          <div className="form-group">
+            <button className="btn btn-primary">Submit</button>
+          </div>
         </form>
       </section>
     )

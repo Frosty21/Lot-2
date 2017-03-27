@@ -20,12 +20,14 @@ export default class App extends Component {
       last_name: '',
       password: '',
       password_confirmation: '',
+      token: ''
     };
     this.socket = io('http://localhost:3001');
     this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this);
     this.handleRegisterChange = this.handleRegisterChange.bind(this);
     this.handleClickSignIn = this.handleClickSignIn.bind(this);
     this.handleClickSignUp = this.handleClickSignUp.bind(this);
+    this.handleSignInSubmit = this.handleSignInSubmit.bind(this);
   }
 
   handleRegisterChange (e) {
@@ -46,6 +48,8 @@ export default class App extends Component {
       password: this.state.password
     }).then( (res) => {
       if ( res.data === true ) {
+        const token = JSON.parse(res.request.response);
+        console.log('back', token.token);
         this.setState({ registered: 1 });
       }
       console.log('POST RETURNED: ', res.data === true);
@@ -67,29 +71,56 @@ export default class App extends Component {
     this.setState({showSignUp: true});
   }
 
+  handleSignInSubmit(e) {
+    console.log('Button Clicked');
+    e.preventDefault();
+
+    axios.post('/login', {
+      email: this.state.email,
+      password: this.state.password
+    }).then( (res) => {
+      if ( res.data === true ) {
+        const token = JSON.parse(res.request.response);
+        console.log('back', token.token);
+        this.setState({ token: token.token, registered: 1 });
+      }
+      console.log('POST RETURNED: ', res.data === true);
+      if (res === true) {
+        this.setState({ token: token.token, registered: 1 });
+      }
+    }).catch( (err) => {
+      console.log(err);
+    });
+  }
 
   render() {
     const showSignIn = this.state.showSignIn;
     const showSignUp = this.state.showSignUp;
+    const logged = this.state.registered;
 
     let form = null;
     if (showSignIn) {
-      form = <SignIn />;
+      form = <SignIn email={this.state.email} password={this.state.password} handleSignInSubmit={this.handleSignInSubmit} handleChange={this.handleRegisterChange} />;
     } else {
       form = null;
     }
 
-    return (
+    let register = null;
+    if (showSignUp) {
+      register = <SignUp password_confirmation={this.state.password_confirmation} password={this.state.password} email={this.state.email} last_name={this.state.last_name} first_name={this.state.first_name} username={this.state.username} handleSubmit={this.handleRegisterSubmit} handleChange={this.handleRegisterChange} />;
+    } else {
+      register = null;
+    }
 
+    // TODO: if token is present render out "logged in page", render the logout on nav and join room.
+
+    return (
       <section className="main">
         <NavigationBar handleClickSignIn={this.handleClickSignIn} handleClickSignUp={this.handleClickSignUp}/>
         <Banner />
-        if (showSignUp) {
-          <SignUp password_confirmation={this.state.password_confirmation} password={this.state.password} email={this.state.email} last_name={this.state.last_name} first_name={this.state.first_name} username={this.state.username} handleSubmit={this.handleRegisterSubmit} handleChange={this.handleRegisterChange} />
-        }
-        <SignedInIndex />
+        {form}
+        {register}
       </section>
-
     )
   }
 }
