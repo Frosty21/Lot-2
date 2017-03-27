@@ -29,19 +29,20 @@ module.exports = (db) => {
       let userPass = req.body.password;
 
       db.locateUserByEmail( userEmail, (ret) => {
-        console.log(ret);
-        if ( ret.user ) {
+        console.log(ret[0]);
+        if ( ret[0].username ) {
 
           const userProfile = {
-            username: ret.user,
+            username: ret.username,
             user: 'player',
           };
           
-          bcrypt.compare(userPass, ret.hash).then( (rest) => {
-              // rest == true user is authenticated
-              const token = jwt.sign(userProfile, jwtSecret, { expiresIn: 60*12 });
-              res.json({ token: token });
-              return; 
+          bcrypt.compare(userPass, ret[0].password).then( (rest) => {
+            console.log('user authenticated', rest);
+            // rest == true user is authenticated
+            const token = jwt.sign(userProfile, jwtSecret, { expiresIn: 60*12 });
+            res.json({ token: token });
+            return;
           });
         }
       });
