@@ -45,7 +45,10 @@ export default class App extends Component {
       last_name: this.state.last_name,
       password: this.state.password
     }).then( (res) => {
-      console.log('POST RETURNED: ', res);
+      if ( res.data === true ) {
+        this.setState({ registered: 1 });
+      }
+      console.log('POST RETURNED: ', res.data === true);
       if (res === true) {
         this.setState({ registered: 1 });
       }
