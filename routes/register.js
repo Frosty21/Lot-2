@@ -2,7 +2,7 @@ const register = require('express').Router();
 
 module.exports = (db) => {
 
-  register.get('/', (req, res) => {
+  register.post('/', (req, res) => {
     console.log('register');
     if ( req.session.user ) {
       res.redirect(200, '/');
@@ -19,7 +19,7 @@ module.exports = (db) => {
         'date': new Date
       }
       db.createNewUser(userPack, (res) => {
-        res.send('Registered User');
+        // user registered, 
         return;
       });
     });

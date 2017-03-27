@@ -1,9 +1,9 @@
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = function(root) {
- return {
-  devtool: 'eval',
+  return {
+  devtool: 'source-map', 
   entry: [
     'webpack-dev-server/client?http://localhost:3000',
     root + '/src/index.jsx'
@@ -26,5 +26,5 @@ module.exports = function(root) {
       }
     ]
   }
- }
-}
+  };
+};

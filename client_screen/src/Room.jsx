@@ -7,19 +7,19 @@ import GameEnd from './GameEnd.jsx';
 export default class Room extends Component {
   constructor(props) {
     super(props);
-    this.socket = io('http://localhost:3001');
+    this.socket = io.connect('http://localhost:3001', {
+      query: 'token=' + this.props.token
+    });
   }
 
   componentDidMount () {
     this.socket.on('data', (data) => {
       console.log(data);
+    }).on('disconnect', () => {
+      console.log('disconnected');
     });
   }
   
-  someFunction () {
-    this.socket.emit('data');
-  }
-
   render() {
     // TODO: add a delay using react-delay-render module, maybe...
     if ( this.props.startGame <= 0 ) {
@@ -30,6 +30,7 @@ export default class Room extends Component {
           <button onClick={this.props.handleClickUser}>Add User</button>
           <button onClick={this.props.handleClickPlay}>Start Gsme</button>
           <p>.. From here, we show users joining, and next component is the Game + Questions</p>
+          <p>Token: {this.props.token}</p>
         </div>
       )
     }
