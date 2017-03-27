@@ -27,7 +27,8 @@ module.exports = (db) => {
     } else if ( req.body.email ) {
       let userEmail = req.body.email;
       let userPass = req.body.password;
-
+      console.log(userEmail);
+      console.log(userPass);
       db.locateUserByEmail( userEmail, (ret) => {
         console.log(ret[0]);
         if ( ret[0].username ) {
@@ -36,7 +37,7 @@ module.exports = (db) => {
             username: ret.username,
             user: 'player',
           };
-          
+
           bcrypt.compare(userPass, ret[0].password).then( (rest) => {
             console.log('user authenticated', rest);
             // rest == true user is authenticated

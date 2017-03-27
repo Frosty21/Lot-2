@@ -5,12 +5,10 @@ export default class Buttons extends Component {
   render() {
     return (
       <div className="child">
-        <Router>
-        <div className="lead">
-          <Link className="btn btn-lg btn-success center-block" role="button" to="/sign_up" onClick={this.props.handleClickSignUp}>Sign Up</Link>
-          <Link className="btn btn-lg btn-success center-block" role="button" to="/login" onClick={this.props.handleClickSignIn}>Login</Link>
-        </div>
-        </Router>
+          <Button className="btn btn-lg btn-success center-block" role="button">A</Button>
+          <Button className="btn btn-lg btn-success center-block" role="button">B</Button>
+          <Button className="btn btn-lg btn-success center-block" role="button">C</Button>
+          <Button className="btn btn-lg btn-success center-block" role="button">D</Button>
       </div>
     )
   }
