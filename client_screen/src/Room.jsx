@@ -7,14 +7,28 @@ import GameEnd from './GameEnd.jsx';
 export default class Room extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      data: {}
+    }
     this.socket = io.connect('http://localhost:3001', {
       query: 'token=' + this.props.token
     });
   }
 
+  
+  componentWillMount() {
+  }
+  
+
   componentDidMount () {
-    this.socket.on('data', (data) => {
+    this.state.data['room'] = this.props.RoomId;
+    this.socket.emit('join', this.state.data);
+    this.socket.on(this.state.data.room, (data) => {
+      if ( data.user ){
+        
+      }
       console.log(data);
+      this.socket.emit(this.props.RoomId, 'this is what we send through')
     }).on('disconnect', () => {
       console.log('disconnected');
     });
@@ -22,7 +36,7 @@ export default class Room extends Component {
   
   render() {
     // TODO: add a delay using react-delay-render module, maybe...
-    if ( this.props.startGame <= 0 ) {
+    if ( this.props.startGame <= 0 && this.props.gameEnd === 0 ) {
       return (
         <div>
           <h1>You have joined Room {this.props.RoomId}</h1> <br />
@@ -35,21 +49,21 @@ export default class Room extends Component {
       )
     }
     // TODO: Show all User Cards in a loading screen, suspense is good, use react-delay-render
-    if ( this.props.startGame >= 1 && this.props.LoadTimer >= 0) {
+    /*if ( this.props.startGame >= 1 && this.props.LoadTimer >= 0) {
       return (
         <div>
           <GameLoad />
         </div>
       )
-    }
-    if ( this.props.startGame >= 1 && this.props.LoadTimer <= 0 ) {
+    }*/
+    if ( this.props.startGame >= 1 ) {
       return (
         <div>
           <GamePlay gameEnd={this.props.gameEnd}/>
         </div>
       )
     }
-    if ( this.props.gameEnd == 1) {
+    if ( this.props.gameEnd === 1) {
       return (
         <div>
           <GameEnd />

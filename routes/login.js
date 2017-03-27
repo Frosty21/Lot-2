@@ -18,7 +18,7 @@ module.exports = (db) => {
       // TODO: Ensure the ROOM ID does not exist yet
       const screenProfile = {
         room: req.body.screen,
-        user: 'screen'
+        type: 'screen'
       }
       const token = jwt.sign(screenProfile, jwtSecret, { expiresIn: 60*12 });
       res.json({ token: token });
@@ -33,7 +33,7 @@ module.exports = (db) => {
 
           const userProfile = {
             username: ret.user,
-            user: 'player',
+            type: 'user',
           };
           
           bcrypt.compare(userPass, ret.hash).then( (rest) => {
