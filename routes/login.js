@@ -8,18 +8,20 @@ const jwtSecret = 'f5baaf169e93e37212cfce26de6b983df2342e9a736a16f92a3390844c721
 module.exports = (db) => {
 
   login.post('/', (req, res) => {
+    console.log('being login', req.body);
     if ( req.session ) {
         res.redirect(301, '/');
         return;
     }
+
     // TODO: if req.body.screen || req.body.email don't exist, do something?
     if ( req.body.screen ) {
-      console.log(req.body);
+      console.log('Screen login start: ', req.body);
       // This is a screen, supply token with room ID
       // TODO: Ensure the ROOM ID does not exist yet
       const screenProfile = {
         room: req.body.screen,
-        user: 'screen'
+        type: 'screen',
       }
       const token = jwt.sign(screenProfile, jwtSecret, { expiresIn: 60*12 });
       res.json({ token: token });
@@ -34,7 +36,7 @@ module.exports = (db) => {
 
           const userProfile = {
             username: ret.username,
-            user: 'player',
+            type: 'user',
           };
           
           bcrypt.compare(userPass, ret[0].password).then( (rest) => {
