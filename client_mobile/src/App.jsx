@@ -4,8 +4,9 @@ import React, {Component} from 'react';
 import Banner from './Banner.jsx';
 import SignIn from './SignIn.jsx';
 import SignUp from './SignUp.jsx';
-import SignedInIndex from './SignedInIndex.jsx';
+import JoinRoom from './JoinRoom.jsx';
 import NavigationBar from './NavigationBar.jsx';
+import Room from './Room.jsx';
 
 export default class App extends Component {
   constructor(props) {
@@ -20,7 +21,8 @@ export default class App extends Component {
       last_name: '',
       password: '',
       password_confirmation: '',
-      token: ''
+      token: '',
+      roomId: 0
     };
     this.socket = io('http://localhost:3001');
     this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this);
@@ -28,6 +30,8 @@ export default class App extends Component {
     this.handleClickSignIn = this.handleClickSignIn.bind(this);
     this.handleClickSignUp = this.handleClickSignUp.bind(this);
     this.handleSignInSubmit = this.handleSignInSubmit.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleRegisterChange (e) {
@@ -47,15 +51,9 @@ export default class App extends Component {
       last_name: this.state.last_name,
       password: this.state.password
     }).then( (res) => {
-      if ( res.data === true ) {
-        const token = JSON.parse(res.request.response);
-        console.log('back', token.token);
-        this.setState({ registered: 1 });
-      }
-      console.log('POST RETURNED: ', res.data === true);
-      if (res === true) {
-        this.setState({ registered: 1 });
-      }
+      const token = JSON.parse(res.request.response);
+      console.log('back', token.token);
+      this.setState({ token: token.token, registered: 1, username: res.username});
     }).catch( (err) => {
       console.log(err);
     });
@@ -79,19 +77,33 @@ export default class App extends Component {
       email: this.state.email,
       password: this.state.password
     }).then( (res) => {
-      if ( res.data === true ) {
         const token = JSON.parse(res.request.response);
-        console.log('back', token.token);
-        this.setState({ token: token.token, registered: 1 });
-      }
-      console.log('POST RETURNED: ', res.data === true);
-      if (res === true) {
-        this.setState({ token: token.token, registered: 1 });
-      }
+        this.setState({ token: token.token, registered: 1, username: res.username });
+        console.log(this.state);
     }).catch( (err) => {
       console.log(err);
     });
   }
+
+  handleKeyPress(event) {
+    if(event.key === 'Enter'){
+      const roomNumber = event.target.value;
+      console.log('enter');
+
+      axios.post('/login', {
+        screen: roomNumber
+      }).then( (res) => {
+        const token = JSON.parse(res.request.response);
+        console.log('back', token.token);
+        this.setState({ token: token.token, roomId: roomNumber });
+      });
+    }
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+  }
+
 
   render() {
     const showSignIn = this.state.showSignIn;
@@ -113,14 +125,46 @@ export default class App extends Component {
     }
 
     // TODO: if token is present render out "logged in page", render the logout on nav and join room.
-
-    return (
+    if (this.state.registered === 0) {
+      return (
       <section className="main">
         <NavigationBar handleClickSignIn={this.handleClickSignIn} handleClickSignUp={this.handleClickSignUp}/>
         <Banner />
         {form}
         {register}
       </section>
-    )
+    )}
+
+    if (this.state.registered === 1 && this.state.roomId === 0) {
+      return (
+      <section className="main">
+        <NavigationBar handleClickSignIn={this.handleClickSignIn} handleClickSignUp={this.handleClickSignUp}/>
+        <Banner />
+         <h1>Welcome {this.state.email}</h1>
+          <JoinRoom handleSubmit={this.handleSubmit} handleKeyPress={this.handleKeyPress} />
+      </section>
+    )}
+
+    if (this.state.registered === 1 && this.state.roomId >= 1) {
+      return (
+      <section className="main">
+        <NavigationBar handleClickSignIn={this.handleClickSignIn} handleClickSignUp={this.handleClickSignUp}/>
+        <Banner />
+         <h1>Welcome {this.state.email}</h1>
+        <Room RoomId={this.state.roomId}/>
+      </section>
+    )}
+
+
+
+    // return (
+    //   <section className="main">
+    //     <NavigationBar handleClickSignIn={this.handleClickSignIn} handleClickSignUp={this.handleClickSignUp}/>
+    //     <Banner />
+    //     {form}
+    //     {register}
+    //     {tokenIn}
+    //   </section>
+    // )
   }
 }

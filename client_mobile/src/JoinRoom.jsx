@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-export default class SignedInIndex extends Component {
+export default class JoinRoom extends Component {
   render() {
     return (
           <form onSubmit={this.props.handleSubmit}>
