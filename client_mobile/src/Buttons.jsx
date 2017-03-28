@@ -5,10 +5,10 @@ export default class Buttons extends Component {
   render() {
     return (
       <div className="child">
-          <Button className="btn btn-lg btn-success center-block" role="button">A</Button>
-          <Button className="btn btn-lg btn-success center-block" role="button">B</Button>
-          <Button className="btn btn-lg btn-success center-block" role="button">C</Button>
-          <Button className="btn btn-lg btn-success center-block" role="button">D</Button>
+          <button className="btn btn-lg btn-success center-block" role="button">A</button>
+          <button className="btn btn-lg btn-success center-block" role="button">B</button>
+          <button className="btn btn-lg btn-success center-block" role="button">C</button>
+          <button className="btn btn-lg btn-success center-block" role="button">D</button>
       </div>
     )
   }
