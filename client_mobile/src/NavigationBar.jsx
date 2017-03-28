@@ -12,8 +12,12 @@ export default class NavigationBar extends Component {
 
           <div className="collapse navbar-collapse">
             <div className="nav navbar-nav navbar-right">
-              <li className="nav-item" onClick={this.props.handleClickSignUp}>Register</li>
-              <li className="nav-item" onClick={this.props.handleClickSignIn}>Login</li>
+              <li className="nav-item" onClick={this.props.handleClickSignUp}>
+                <a className="nav-link" href="#">Register</a>
+              </li>
+              <li className="nav-item" onClick={this.props.handleClickSignIn}>
+                <a className="nav-link" href="#">Login</a>
+              </li>
             </div>
           </div>
         </div>

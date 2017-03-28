@@ -44,6 +44,8 @@ module.exports = (db) => {
             const token = jwt.sign(userProfile, jwtSecret, { expiresIn: 60*12 });
             res.json({ token: token });
             return;
+          }).catch( (err) => {
+            console.log(err);
           });
         }
       });
