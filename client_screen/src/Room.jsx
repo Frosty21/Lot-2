@@ -23,11 +23,12 @@ export default class Room extends Component {
 
   componentDidMount () {
     const room = this.props.RoomId;
-    console.log(room);
+    this.socket.emit('join', {room: room });
     this.socket.emit(room, "I'm ready to receive data..");
 
     this.socket.on(room, (data) => {
       console.log(data);
+      this.socket.emit('message', 'fuck yeah!');
       if (data.player && data.player.length > 0){
         const play = this.state.players;
         this.setState({ players: play.concat(data.player) });
@@ -57,10 +58,8 @@ export default class Room extends Component {
             <button onClick={this.props.handleClickPlay}>Start G4me</button>
             <p>.. From here, we show users joining, and next component is the Game + Questions</p>
             <p>Token: {this.props.token}</p>
-  
           </div>
         )
-
     }
     // TODO: Show all User Cards in a loading screen, suspense is good, use react-delay-render
     if ( this.props.startGame >= 1 && this.props.LoadTimer >= 0) {
