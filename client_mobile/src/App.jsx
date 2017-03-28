@@ -84,7 +84,7 @@ export default class App extends Component {
         const jsObj = JSON.parse(res.request.response);
         this.setState({ 
           username: jsObj.username,
-          token: jsObj.token
+          token: jsObj.token,
           registered: 1
         });
         console.log(this.state);
