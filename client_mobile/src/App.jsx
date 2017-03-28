@@ -28,7 +28,6 @@ export default class App extends Component {
       token: '',
       roomId: 0
     };
-    this.socket = io('http://localhost:3001');
     this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this);
     this.handleRegisterChange = this.handleRegisterChange.bind(this);
     this.handleClickSignIn = this.handleClickSignIn.bind(this);
@@ -85,7 +84,7 @@ export default class App extends Component {
         const jsObj = JSON.parse(res.request.response);
         this.setState({ 
           username: jsObj.username,
-          token: jsObj.token,
+          token: jsObj.token
           registered: 1
         });
         console.log(this.state);
@@ -161,7 +160,7 @@ export default class App extends Component {
         <NavigationBar handleClickSignIn={this.handleClickSignIn} handleClickSignUp={this.handleClickSignUp}/>
         <Banner />
          <h1>Welcome {this.state.username}</h1>
-        <Room RoomId={this.state.roomId}/>
+        <Room RoomId={this.state.roomId} token={this.state.token} />
       </section>
     )}
 

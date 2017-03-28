@@ -8,9 +8,9 @@ const bcrypt = require('bcrypt');
 // const config = require('./config');
 const app = express();
 
-console.log('Server listening on port 3001');
+console.log('[*Server*] listening on port 3002');
 
-const server = app.listen(3001, 'localhost');
+const server = app.listen(3002, 'localhost');
 const io = require('./lib/sockets')(server);
 
 app.use(express.static(path.join(__dirname, 'client_screen/build')));

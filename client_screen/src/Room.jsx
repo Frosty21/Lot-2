@@ -13,22 +13,24 @@ export default class Room extends Component {
       gameId: 0,
       curRound: 0,
       maxRound: 5,
-      gameQuestion: []
+      gameQuestion: [] 
       // gameQuestion['Question', 'RightAnswer', 'WrongAnswer1', 'WrongAnswer2', 'WrongAnswer3]
     }
-    this.socket = io.connect('http://localhost:3001', {
-      query: 'token=' + this.props.token
+    this.socket = io.connect('http://localhost:3002', {
+      query: 'token=' + this.props.token,
+      'force new connection': true
     });
   }
 
   componentDidMount () {
     const room = this.props.RoomId;
+
     this.socket.emit('join', {room: room });
     this.socket.emit(room, "I'm ready to receive data..");
 
     this.socket.on(room, (data) => {
       console.log(data);
-      this.socket.emit('message', 'fuck yeah!');
+      this.socket.emit('message', 'Im THE SCREEN!');
       if (data.player && data.player.length > 0){
         const play = this.state.players;
         this.setState({ players: play.concat(data.player) });

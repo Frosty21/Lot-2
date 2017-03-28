@@ -4,10 +4,7 @@ const webpack = require('webpack');
 module.exports = function(root) {
   return {
   devtool: 'source-map',
-  entry: [
-    'webpack-dev-server/client?http://localhost:3000',
-    root + '/src/index.jsx'
-  ],
+  entry: root + '/src/index.jsx',
   output: {
     path: path.join(__dirname, root, 'build'),
     filename: 'bundle.js',

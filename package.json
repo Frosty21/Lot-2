@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "DEBUG=express:* node server.js",
-    "start-screen": "DEBUG=express:* node devserver.js screen",
-    "start-mobile": "DEBUG=express:* node devserver.js mobile",
+    "start-screen": "DEBUG=express:* node screenserver.js screen",
+    "start-mobile": "DEBUG=express:* node mobileserver.js mobile",
     "build-screen": "node_modules/.bin/webpack --config client_screen/webpack.config.js",
     "build-mobile": "node_modules/.bin/webpack --config client_mobile/webpack.config.js"
   },
