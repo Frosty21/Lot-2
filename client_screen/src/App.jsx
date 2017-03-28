@@ -1,3 +1,7 @@
+// ***************
+// *SCREEN CLIENT*
+// ***************
+
 const axios = require('axios');
 import React, {Component} from 'react';
 import JoinRoom from './JoinRoom.jsx';
@@ -19,7 +23,7 @@ export default class App extends Component {
       token: ''
     };
     this.handleClickPlay = this.handleClickPlay.bind(this);
-    this.handleClickUser = this.handleClickUser.bind(this);  
+    this.handleClickUser = this.handleClickUser.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -38,14 +42,14 @@ export default class App extends Component {
   handleKeyPress(event) {
     if(event.key === 'Enter'){
       const roomNumber = event.target.value;
-      console.log('enter');
+      console.log('Enter Room: ', roomNumber);
 
-      axios.post('/login', {
-        screen: roomNumber
+      axios.post('/joinroom', {
+        room: roomNumber
       }).then( (res) => {
-        const token = JSON.parse(res.request.response);
-        console.log('back', token.token);
-        this.setState({ token: token.token, roomId: roomNumber });
+        const jsObj = JSON.parse(res.request.response);
+        console.log('back', jsObj.token);
+        this.setState({ token: jsObj.token, roomId: roomNumber });
       });
     }
   }

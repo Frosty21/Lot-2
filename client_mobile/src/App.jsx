@@ -1,3 +1,7 @@
+// ***************
+// *MOBILE CLIENT*
+// ***************
+
 const io = require('socket.io-client')
 const axios = require('axios');
 import React, {Component} from 'react';
@@ -77,8 +81,13 @@ export default class App extends Component {
       email: this.state.email,
       password: this.state.password
     }).then( (res) => {
-        const token = JSON.parse(res.request.response);
-        this.setState({ token: token.token, registered: 1, username: res.username });
+      console.log(res);
+        const jsObj = JSON.parse(res.request.response);
+        this.setState({ 
+          username: jsObj.username,
+          token: jsObj.token,
+          registered: 1
+        });
         console.log(this.state);
     }).catch( (err) => {
       console.log(err);
@@ -90,12 +99,13 @@ export default class App extends Component {
       const roomNumber = event.target.value;
       console.log('enter');
 
-      axios.post('/login', {
-        screen: roomNumber
+      axios.post('/joinroom', {
+        room: roomNumber,
+        username: this.state.username
       }).then( (res) => {
-        const token = JSON.parse(res.request.response);
-        console.log('back', token.token);
-        this.setState({ token: token.token, roomId: roomNumber });
+        const jsObj = JSON.parse(res.request.response);
+        console.log('back', jsObj);
+        this.setState({ token: jsObj.token, roomId: roomNumber});
       });
     }
   }
@@ -140,7 +150,7 @@ export default class App extends Component {
       <section className="main">
         <NavigationBar handleClickSignIn={this.handleClickSignIn} handleClickSignUp={this.handleClickSignUp}/>
         <Banner />
-         <h1>Welcome {this.state.email}</h1>
+         <h1>Welcome {this.state.username}</h1>
           <JoinRoom handleSubmit={this.handleSubmit} handleKeyPress={this.handleKeyPress} />
       </section>
     )}
@@ -150,7 +160,7 @@ export default class App extends Component {
       <section className="main">
         <NavigationBar handleClickSignIn={this.handleClickSignIn} handleClickSignUp={this.handleClickSignUp}/>
         <Banner />
-         <h1>Welcome {this.state.email}</h1>
+         <h1>Welcome {this.state.username}</h1>
         <Room RoomId={this.state.roomId}/>
       </section>
     )}

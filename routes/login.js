@@ -9,10 +9,7 @@ module.exports = (db) => {
 
   login.post('/', (req, res) => {
     console.log('being login', req.body);
-    if ( req.session ) {
-        res.redirect(301, '/');
-        return;
-    }
+
 
     // TODO: if req.body.screen || req.body.email don't exist, do something?
     if ( req.body.screen ) {
@@ -36,16 +33,17 @@ module.exports = (db) => {
         if ( ret[0].username ) {
 
           const userProfile = {
-            username: ret.username,
+            username: ret[0].username,
             type: 'user',
           };
 
           bcrypt.compare(userPass, ret[0].password).then( (rest) => {
             console.log('user authenticated', rest);
-            // rest == true user is authenticated
-            const token = jwt.sign(userProfile, jwtSecret, { expiresIn: 60*12 });
-            res.json({ token: token });
-            return;
+            if (rest === true) {
+              const token = jwt.sign(userProfile, jwtSecret, { expiresIn: 60*12 });
+              res.json({ token: token, username: ret[0].username });
+              return;
+            }
           }).catch( (err) => {
             console.log(err);
           });

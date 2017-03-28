@@ -21,7 +21,9 @@ app.use(morgan('dev'));
 const login = require('./routes/login')(db);
 const register = require('./routes/register')(db);
 const logout = require('./routes/logout');
+const joinroom = require('./routes/joinroom');
 
 app.use('/login', login);
 app.use('/register', register);
 app.use('/logout', logout);
+app.use('/joinroom', joinroom);
