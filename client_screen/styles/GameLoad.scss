@@ -1,4 +1,4 @@
-#global {
+.global {
   width: 70px;
   margin: auto;
   margin-top: 50px;
@@ -103,6 +103,16 @@
     transform: translate3d(53px, 0, 0)
   }
   to {
-    transform: translate3d(-220px, 0, 0)
+    transform: transflate3d(-220px, 0, 0)
   }
+}
+
+.avatarWrapper {
+  margin-top: 20px;
+  display: flex
+}
+
+
+.avatar {
+  margin: auto;
 }
