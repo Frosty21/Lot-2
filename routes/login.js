@@ -9,39 +9,51 @@ module.exports = (db) => {
 
   login.post('/', (req, res) => {
     console.log('being login', req.body);
-
+    if (req.body.token) {
+      console.log('authenticating token');
+      const token = req.body.token;
+      jwt.verify(token, jwtSecret, (err, decoded) => {
+        console.log('Decoded: ', decoded);
+        if(err){
+          res.json({ isLoggedIn: false });
+        } else {
+          res.json({ isLoggedIn: true });
+        }
+      });
+    }
 
     // TODO: if req.body.screen || req.body.email don't exist, do something?
-    if ( req.body.screen ) {
+    if ( req.body.type === 'screen' ) {
       console.log('Screen login start: ', req.body);
       // This is a screen, supply token with room ID
       // TODO: Ensure the ROOM ID does not exist yet
       const screenProfile = {
-        room: req.body.screen,
-        type: 'screen',
+        type: req.body.type,
       }
+
       const token = jwt.sign(screenProfile, jwtSecret, { expiresIn: 60*12 });
       res.json({ token: token });
       return;
+
     } else if ( req.body.email ) {
+
       let userEmail = req.body.email;
       let userPass = req.body.password;
-      console.log(userEmail);
-      console.log(userPass);
       db.locateUserByEmail( userEmail, (ret) => {
-        console.log(ret[0]);
         if ( ret[0].username ) {
-
+          const retUsername = ret[0].username
+          const retPassword = ret[0].password
+          
           const userProfile = {
-            username: ret[0].username,
+            username: retUsername,
             type: 'user',
           };
 
-          bcrypt.compare(userPass, ret[0].password).then( (rest) => {
+          bcrypt.compare(userPass, retPassword).then( (rest) => {
             console.log('user authenticated', rest);
             if (rest === true) {
               const token = jwt.sign(userProfile, jwtSecret, { expiresIn: 60*12 });
-              res.json({ token: token, username: ret[0].username });
+              res.json({ token: token, username: retUsername });
               return;
             }
           }).catch( (err) => {
