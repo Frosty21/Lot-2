@@ -36,9 +36,10 @@ export default class App extends Component {
     this.handleSignInSubmit = this.handleSignInSubmit.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleClickLoggedOut = this.handleClickLoggedOut.bind(this);
   }
 
-  
+
   componentDidMount () {
     const token = localStorage.getItem('token');
     if (token) {
@@ -55,7 +56,7 @@ export default class App extends Component {
       });
     }
   }
-  
+
 
   handleRegisterChange (e) {
     console.log(e.target);
@@ -104,7 +105,7 @@ export default class App extends Component {
       console.log(res);
         const jsObj = JSON.parse(res.request.response);
         localStorage.setItem('token', jsObj.token);
-        this.setState({ 
+        this.setState({
           username: jsObj.username,
           token: jsObj.token,
           isLoggedIn: true
@@ -135,6 +136,11 @@ export default class App extends Component {
     event.preventDefault();
   }
 
+  handleClickLoggedOut() {
+    console.log('Clicked');
+    localStorage.removeItem('token');
+    this.setState({isLoggedIn: false});
+  }
 
   render() {
     const showSignIn = this.state.showSignIn;
@@ -159,7 +165,7 @@ export default class App extends Component {
     if (this.state.isLoggedIn === false) {
       return (
       <section className="main">
-        <NavigationBar handleClickSignIn={this.handleClickSignIn} handleClickSignUp={this.handleClickSignUp}/>
+        <NavigationBar handleClickSignIn={this.handleClickSignIn} handleClickSignUp={this.handleClickSignUp} isLoggedIn={this.state.isLoggedIn} />
         <Banner />
         {login}
         {register}
@@ -169,7 +175,7 @@ export default class App extends Component {
     if (this.state.isLoggedIn === true && this.state.roomId === 0) {
       return (
       <section className="main">
-        <NavigationBar handleClickSignIn={this.handleClickSignIn} handleClickSignUp={this.handleClickSignUp}/>
+        <NavigationBar handleClickSignIn={this.handleClickSignIn} handleClickSignUp={this.handleClickSignUp} handleClickLoggedOut={this.handleClickLoggedOut}/>
         <Banner />
          <h1>Welcome {this.state.username}</h1>
           <JoinRoom handleSubmit={this.handleSubmit} handleKeyPress={this.handleKeyPress} />
@@ -179,23 +185,12 @@ export default class App extends Component {
     if (this.state.isLoggedIn === true && this.state.roomId >= 1) {
       return (
       <section className="main">
-        <NavigationBar handleClickSignIn={this.handleClickSignIn} handleClickSignUp={this.handleClickSignUp}/>
+        <NavigationBar handleClickSignIn={this.handleClickSignIn} handleClickSignUp={this.handleClickSignUp} handleClickLoggedOut={this.handleClickLoggedOut}/>
         <Banner />
          <h1>Welcome {this.state.username}</h1>
         <Room RoomId={this.state.roomId} token={this.state.token} />
       </section>
     )}
 
-
-
-    // return (
-    //   <section className="main">
-    //     <NavigationBar handleClickSignIn={this.handleClickSignIn} handleClickSignUp={this.handleClickSignUp}/>
-    //     <Banner />
-    //     {form}
-    //     {register}
-    //     {tokenIn}
-    //   </section>
-    // )
   }
 }
