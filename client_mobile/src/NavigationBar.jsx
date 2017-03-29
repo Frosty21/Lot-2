@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 
 export default class NavigationBar extends Component {
   render() {
-    if (this.props.registered === 0) {
+    if (this.props.isLoggedIn === false) {
     return (
       <nav className="navbar navbar-default">
         <div className="container-fluid">
@@ -34,8 +34,8 @@ export default class NavigationBar extends Component {
 
           <div className="collapse navbar-collapse">
             <div className="nav navbar-nav navbar-right">
-              <li className="nav-item" onClick={this.props.handleClickSignIn}>
-                <a className="nav-link" href="#">Logout</a>
+              <li className="nav-item" onClick={this.props.handleClickLoggedOut}>
+                <a className="nav-link" href="/">Logout</a>
               </li>
             </div>
           </div>
