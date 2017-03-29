@@ -19,6 +19,7 @@ export default class App extends Component {
       showSignIn: false,
       showSignUp: false,
       registered: 0,
+      isLoggedIn: false,
       username: '',
       email: '',
       first_name: '',
@@ -36,6 +37,25 @@ export default class App extends Component {
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  
+  componentDidMount () {
+    const token = localStorage.getItem('token');
+    if (token) {
+      axios.post('/login', {
+        token: token
+      }).then( (res) => {
+        const jsObj = JSON.parse(res.request.response);
+        if(!jsObj.isLoggedIn){
+          localStorage.removeItem('token');
+        }
+        this.setState({ isLoggedIn: jsObj.isLoggedIn });
+      }).catch( (err) => {
+        console.log(err);
+      });
+    }
+  }
+  
 
   handleRegisterChange (e) {
     console.log(e.target);
@@ -56,7 +76,8 @@ export default class App extends Component {
     }).then( (res) => {
       const token = JSON.parse(res.request.response);
       console.log('back', token.token);
-      this.setState({ token: token.token, registered: 1, username: res.username});
+      localStorage.setItem('token', token.token)
+      this.setState({ registered: 1});
     }).catch( (err) => {
       console.log(err);
     });
@@ -82,10 +103,11 @@ export default class App extends Component {
     }).then( (res) => {
       console.log(res);
         const jsObj = JSON.parse(res.request.response);
+        localStorage.setItem('token', jsObj.token);
         this.setState({ 
           username: jsObj.username,
           token: jsObj.token,
-          registered: 1
+          isLoggedIn: true
         });
         console.log(this.state);
     }).catch( (err) => {
@@ -119,11 +141,11 @@ export default class App extends Component {
     const showSignUp = this.state.showSignUp;
     const logged = this.state.registered;
 
-    let form = null;
+    let login = null;
     if (showSignIn) {
-      form = <SignIn email={this.state.email} password={this.state.password} handleSignInSubmit={this.handleSignInSubmit} handleChange={this.handleRegisterChange} />;
+      login = <SignIn email={this.state.email} password={this.state.password} handleSignInSubmit={this.handleSignInSubmit} handleChange={this.handleRegisterChange} />;
     } else {
-      form = null;
+      login = null;
     }
 
     let register = null;
@@ -134,17 +156,17 @@ export default class App extends Component {
     }
 
     // TODO: if token is present render out "logged in page", render the logout on nav and join room.
-    if (this.state.registered === 0) {
+    if (this.state.isLoggedIn === false) {
       return (
       <section className="main">
         <NavigationBar handleClickSignIn={this.handleClickSignIn} handleClickSignUp={this.handleClickSignUp}/>
         <Banner />
-        {form}
+        {login}
         {register}
       </section>
     )}
 
-    if (this.state.registered === 1 && this.state.roomId === 0) {
+    if (this.state.isLoggedIn === true && this.state.roomId === 0) {
       return (
       <section className="main">
         <NavigationBar handleClickSignIn={this.handleClickSignIn} handleClickSignUp={this.handleClickSignUp}/>
@@ -154,7 +176,7 @@ export default class App extends Component {
       </section>
     )}
 
-    if (this.state.registered === 1 && this.state.roomId >= 1) {
+    if (this.state.isLoggedIn === true && this.state.roomId >= 1) {
       return (
       <section className="main">
         <NavigationBar handleClickSignIn={this.handleClickSignIn} handleClickSignUp={this.handleClickSignUp}/>

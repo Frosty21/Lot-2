@@ -28,6 +28,18 @@ export default class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  
+  componentWillMount() {
+    axios.post('/login', {
+     type: 'screen'
+    }).then( (res) => {
+      const jsObj = JSON.parse(res.request.response);
+      console.log('back', jsObj.token);
+      this.setState({ token: jsObj.token });
+    });
+  }
+  
+
   handleClickUser(e){
     console.log(e);
     let newUser = this.state.users;
@@ -48,8 +60,7 @@ export default class App extends Component {
         room: roomNumber
       }).then( (res) => {
         const jsObj = JSON.parse(res.request.response);
-        console.log('back', jsObj.token);
-        this.setState({ token: jsObj.token, roomId: roomNumber });
+        this.setState({ roomId: jsObj.room });
       });
     }
   }
