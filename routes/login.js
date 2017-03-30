@@ -14,10 +14,11 @@ module.exports = (db) => {
       const token = req.body.token;
       jwt.verify(token, jwtSecret, (err, decoded) => {
         console.log('Decoded: ', decoded);
+        console.log('USERNAME', decoded.username );
         if(err){
-          res.json({ isLoggedIn: false });
+          res.json({ isLoggedIn: false , username: '' });
         } else {
-          res.json({ isLoggedIn: true });
+          res.json({ isLoggedIn: true, username: decoded.username });
         }
       });
     }

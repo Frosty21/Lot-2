@@ -50,7 +50,7 @@ export default class App extends Component {
         if(!jsObj.isLoggedIn){
           localStorage.removeItem('token');
         }
-        this.setState({ isLoggedIn: jsObj.isLoggedIn });
+        this.setState({ isLoggedIn: jsObj.isLoggedIn, username: jsObj.username });
       }).catch( (err) => {
         console.log(err);
       });
