@@ -70,7 +70,6 @@ export default class App extends Component {
     e.preventDefault();
 
     // TODO: check passwords are the same
-
     axios.post('/register', {
       username: this.state.username,
       email: this.state.email,
@@ -191,7 +190,10 @@ export default class App extends Component {
     if (this.state.isLoggedIn === true && this.state.roomId >= 1) {
       return (
       <section className="main">
+<<<<<<< HEAD
         <NavigationBar handleClickSignIn={this.handleClickSignIn} handleClickSignUp={this.handleClickSignUp} handleClickLoggedOut={this.handleClickLoggedOut} getUsername={this.state.username}/>
+=======
+>>>>>>> bug/buttons/1
         <Banner />
          <h1>Welcome {this.state.username}</h1>
         <Room RoomId={this.state.roomId} token={this.state.token} />
