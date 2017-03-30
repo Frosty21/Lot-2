@@ -11,16 +11,21 @@ export default class Room extends Component {
       answerC: false,
       answerD: false,
       isDisabled: '',
+      buttonReset: 0,
       token: localStorage.getItem('token')
     }
     this.handleClickAnswerA= this.handleClickAnswerA.bind(this);
     this.handleClickAnswerB= this.handleClickAnswerB.bind(this);
     this.handleClickAnswerC= this.handleClickAnswerC.bind(this);
     this.handleClickAnswerD= this.handleClickAnswerD.bind(this);
-
+    this.gameRoundLogic = this.gameRoundLogic.bind(this);
     this.socket = io.connect('http://localhost:3002', {
       query: 'token=' + this.state.token
     });
+  }
+
+  gameRoundLogic() {
+    this.setState({ buttonReset: this.state.buttonReset + 1 });
   }
 
   componentDidMount () {
@@ -34,6 +39,9 @@ export default class Room extends Component {
       this.socket.emit('message', 'Im THE CLIENT!');
     }).on('disconnect', () => {
       console.log('disconnected');
+    });
+    this.socket.on('roundChange', data => {
+      this.gameRoundLogic();
     });
   }
 
