@@ -9,7 +9,8 @@ export default class Room extends Component {
       answerA: false,
       answerB: false,
       answerC: false,
-      answerD: false
+      answerD: false,
+      token: localStorage.getItem('token')
     }
     this.handleClickAnswerA= this.handleClickAnswerA.bind(this);
     this.handleClickAnswerB= this.handleClickAnswerB.bind(this);
@@ -17,7 +18,7 @@ export default class Room extends Component {
     this.handleClickAnswerD= this.handleClickAnswerD.bind(this);
 
     this.socket = io.connect('http://localhost:3002', {
-      query: 'token=' + this.props.token
+      query: 'token=' + this.state.token
     });
   }
 
