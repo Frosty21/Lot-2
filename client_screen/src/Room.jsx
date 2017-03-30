@@ -11,11 +11,11 @@ export default class Room extends Component {
     this.state = {
       players: [ { name: 'ermis'}, {name: 'robert' } ],
       gameId: 0,
-      curRound: 0,
-      maxRound: 5,
+      roundNumber: 0,
+      roundLeft: 0,
       gameQuestion: [],
-      startGame: 0,
-      gameEnd: 0
+      startGame: false,
+      gameEnd: false
       // gameQuestion['Question', 'RightAnswer', 'WrongAnswer1', 'WrongAnswer2', 'WrongAnswer3]
     }
     this.handleClick = this.handleClick.bind(this);
@@ -34,20 +34,16 @@ export default class Room extends Component {
     this.socket.on(room, (data) => {
       console.log(data);
       this.socket.emit('message', 'Im THE SCREEN!');
-      if (data.player && data.player.length > 0){
-        const play = this.state.players;
-        this.setState({ players: play.concat(data.player) });
-      } else if (data.gameId > 0 && this.state.gameId <= 0) {
-        this.setState({ gameId: data.gameId})
-      } else if (data.curRound > 0 && this.state.curRound <= this.state.maxRound && data.gameQuestion.length === 4) {
-        // Will have questions and answers with current round
-        this.setState({
-          curRound: data.curRound,
-          gameQuestion: data.gameQuestion
-        });
-      }
     }).on('disconnect', () => {
       console.log('disconnected');
+    });
+
+    this.socket.on('gameStarted', (data) => {
+      this.setState({ startGame: true, gameId: data.gameId });
+    });
+
+    this.socket.on('roundChange', (data) => {
+      this.setState({ gameQuestion: data.gameQuestion, roundNumber:  data.roundNumber });
     });
   }
 
@@ -59,18 +55,18 @@ export default class Room extends Component {
 
   render() {
     // TODO: add a delay using react-delay-render module, maybe...
-    if ( this.state.startGame <= 0 && this.state.gameEnd <= 0) {
+    if ( this.state.startGame === false && this.state.gameEnd === false) {
         return (
           <GameLoad RoomId={this.props.RoomId} handleClick={this.handleClick}/>
         )
     }
     // TODO: Show all User Cards in a loading screen, suspense is good, use react-delay-render
-    if ( this.state.startGame >= 1 && this.state.gameEnd <= 0) {
+    if ( this.state.startGame === true && this.state.gameEnd === false) {
       return (
-          <GamePlay />
+          <GamePlay GameQuestion={this.state.gameQuestion} />
       )
     }
-    if ( this.props.gameEnd == 1 ) {
+    if ( this.props.gameEnd === true ) {
       return (
           <GameEnd />
       )
