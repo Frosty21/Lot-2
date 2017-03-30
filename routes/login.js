@@ -13,11 +13,10 @@ module.exports = (db) => {
       console.log('authenticating token');
       const token = req.body.token;
       jwt.verify(token, jwtSecret, (err, decoded) => {
-        console.log('Decoded: ', decoded);
         if(err){
-          res.json({ isLoggedIn: false });
+          res.json({ isLoggedIn: false , username: '' });
         } else {
-          res.json({ isLoggedIn: true });
+          res.json({ isLoggedIn: true, username: decoded.username });
         }
       });
     }
@@ -43,7 +42,7 @@ module.exports = (db) => {
         if ( ret[0].username ) {
           const retUsername = ret[0].username
           const retPassword = ret[0].password
-          
+
           const userProfile = {
             username: retUsername,
             type: 'user',

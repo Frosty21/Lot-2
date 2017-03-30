@@ -29,7 +29,6 @@ export default class App extends Component {
       token: '',
       roomId: 0
     };
-    this.handleGetUsername = this.handleGetUsername.bind(this);
     this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this);
     this.handleClickSignIn = this.handleClickSignIn.bind(this);
     this.handleClickSignUp = this.handleClickSignUp.bind(this);
@@ -53,8 +52,7 @@ export default class App extends Component {
           localStorage.removeItem('token');
           localStorage.removeItem('username');
         }
-        console.log(jsObj)
-        this.setState({ isLoggedIn: jsObj.isLoggedIn });
+        this.setState({ isLoggedIn: jsObj.isLoggedIn, username: jsObj.username });
       }).catch( (err) => {
         console.log(err);
       });
@@ -150,10 +148,6 @@ export default class App extends Component {
     this.setState({isLoggedIn: false});
   }
 
-  handleGetUsername() {
-    return localStorage.getItem('username');
-  }
-
   render() {
     const showSignIn = this.state.showSignIn;
     const showSignUp = this.state.showSignUp;
@@ -187,7 +181,7 @@ export default class App extends Component {
     if (this.state.isLoggedIn === true && this.state.roomId === 0) {
       return (
       <section className="main">
-        <NavigationBar handleClickSignIn={this.handleClickSignIn} handleClickSignUp={this.handleClickSignUp} handleClickLoggedOut={this.handleClickLoggedOut} handleGetUsername={this.handleGetUsername}/>
+        <NavigationBar handleClickSignIn={this.handleClickSignIn} handleClickSignUp={this.handleClickSignUp} handleClickLoggedOut={this.handleClickLoggedOut} getUsername={this.state.username}/>
         <Banner />
          <h1>Welcome {this.state.username}</h1>
           <JoinRoom handleSubmit={this.handleSubmit} handleKeyPress={this.handleKeyPress} />
@@ -197,7 +191,7 @@ export default class App extends Component {
     if (this.state.isLoggedIn === true && this.state.roomId >= 1) {
       return (
       <section className="main">
-        <NavigationBar handleClickSignIn={this.handleClickSignIn} handleClickSignUp={this.handleClickSignUp} handleClickLoggedOut={this.handleClickLoggedOut} handleGetUsername={this.handleGetUsername}/>
+        <NavigationBar handleClickSignIn={this.handleClickSignIn} handleClickSignUp={this.handleClickSignUp} handleClickLoggedOut={this.handleClickLoggedOut} getUsername={this.state.username}/>
         <Banner />
          <h1>Welcome {this.state.username}</h1>
         <Room RoomId={this.state.roomId} token={this.state.token} />
