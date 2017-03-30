@@ -10,7 +10,7 @@ export default class Room extends Component {
       answerB: false,
       answerC: false,
       answerD: false,
-      isDisabled: ''
+      isDisabled: '',
       token: localStorage.getItem('token')
     }
     this.handleClickAnswerA= this.handleClickAnswerA.bind(this);
