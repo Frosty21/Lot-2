@@ -34,6 +34,7 @@ export default class NavigationBar extends Component {
 
           <div className="collapse navbar-collapse">
             <div className="nav navbar-nav navbar-right">
+              <p className="navbar-text">Signed in as {this.props.handleGetUsername}</p>
               <li className="nav-item" onClick={this.props.handleClickLoggedOut}>
                 <a className="nav-link" href="/">Logout</a>
               </li>

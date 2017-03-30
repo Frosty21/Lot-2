@@ -9,7 +9,8 @@ export default class Room extends Component {
       answerA: false,
       answerB: false,
       answerC: false,
-      answerD: false
+      answerD: false,
+      isDisabled: ''
     }
     this.handleClickAnswerA= this.handleClickAnswerA.bind(this);
     this.handleClickAnswerB= this.handleClickAnswerB.bind(this);
@@ -38,32 +39,32 @@ export default class Room extends Component {
   handleClickAnswerA() {
     console.log("This answer A was pressed");
     this.socket.emit('answer', 'a');
-    this.setState({answerA : true});
+    this.setState({answerA : true, isDisabled : 'disabled'});
   }
 
   handleClickAnswerB() {
     console.log("This answer B was pressed");
     this.socket.emit('answer', 'b');
-    this.setState({answerB : true});
+    this.setState({answerB : true, isDisabled : 'disabled'});
   }
 
   handleClickAnswerC() {
     console.log("This answer C was pressed");
     this.socket.emit('answer', 'c');
-    this.setState({answerC : true});
+    this.setState({answerC : true, isDisabled : 'disabled'});
   }
 
   handleClickAnswerD() {
     console.log("This answer D was pressed");
     this.socket.emit('answer', 'd');
-    this.setState({answerD : true});
+    this.setState({answerD : true, isDisabled : 'disabled'});
   }
 
   render() {
     return (
       <div>
-        <h1>You have joined {this.props.RoomId}</h1>
         <Buttons
+          disabled={this.state.isDisabled}
           answerA={this.handleClickAnswerA}
           answerB={this.handleClickAnswerB}
           answerC={this.handleClickAnswerC}

@@ -29,8 +29,8 @@ export default class App extends Component {
       token: '',
       roomId: 0
     };
+    this.handleGetUsername = this.handleGetUsername.bind(this);
     this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this);
-    this.handleRegisterChange = this.handleRegisterChange.bind(this);
     this.handleClickSignIn = this.handleClickSignIn.bind(this);
     this.handleClickSignUp = this.handleClickSignUp.bind(this);
     this.handleSignInSubmit = this.handleSignInSubmit.bind(this);
@@ -42,14 +42,18 @@ export default class App extends Component {
 
   componentDidMount () {
     const token = localStorage.getItem('token');
+    console.log(token)
     if (token) {
       axios.post('/login', {
         token: token
       }).then( (res) => {
         const jsObj = JSON.parse(res.request.response);
+        console.log(jsObj);
         if(!jsObj.isLoggedIn){
           localStorage.removeItem('token');
+          localStorage.removeItem('username');
         }
+        console.log(jsObj)
         this.setState({ isLoggedIn: jsObj.isLoggedIn });
       }).catch( (err) => {
         console.log(err);
@@ -57,10 +61,11 @@ export default class App extends Component {
     }
   }
 
-
-  handleRegisterChange (e) {
-    console.log(e.target);
-    this.setState({ [e.target.name]: e.target.value})
+  get handleRegisterChange() {
+    return (e) => {
+      console.log(e.target);
+      this.setState({ [e.target.name]: e.target.value})
+    };
   }
 
   handleRegisterSubmit (e) {
@@ -105,6 +110,8 @@ export default class App extends Component {
       console.log(res);
         const jsObj = JSON.parse(res.request.response);
         localStorage.setItem('token', jsObj.token);
+        localStorage.setItem('username', jsObj.username);
+        console.log()
         this.setState({
           username: jsObj.username,
           token: jsObj.token,
@@ -139,7 +146,12 @@ export default class App extends Component {
   handleClickLoggedOut() {
     console.log('Clicked');
     localStorage.removeItem('token');
+    localStorage.removeItem('username');
     this.setState({isLoggedIn: false});
+  }
+
+  handleGetUsername() {
+    return localStorage.getItem('username');
   }
 
   render() {
@@ -175,7 +187,7 @@ export default class App extends Component {
     if (this.state.isLoggedIn === true && this.state.roomId === 0) {
       return (
       <section className="main">
-        <NavigationBar handleClickSignIn={this.handleClickSignIn} handleClickSignUp={this.handleClickSignUp} handleClickLoggedOut={this.handleClickLoggedOut}/>
+        <NavigationBar handleClickSignIn={this.handleClickSignIn} handleClickSignUp={this.handleClickSignUp} handleClickLoggedOut={this.handleClickLoggedOut} handleGetUsername={this.handleGetUsername}/>
         <Banner />
          <h1>Welcome {this.state.username}</h1>
           <JoinRoom handleSubmit={this.handleSubmit} handleKeyPress={this.handleKeyPress} />
@@ -185,7 +197,7 @@ export default class App extends Component {
     if (this.state.isLoggedIn === true && this.state.roomId >= 1) {
       return (
       <section className="main">
-        <NavigationBar handleClickSignIn={this.handleClickSignIn} handleClickSignUp={this.handleClickSignUp} handleClickLoggedOut={this.handleClickLoggedOut}/>
+        <NavigationBar handleClickSignIn={this.handleClickSignIn} handleClickSignUp={this.handleClickSignUp} handleClickLoggedOut={this.handleClickLoggedOut} handleGetUsername={this.handleGetUsername}/>
         <Banner />
          <h1>Welcome {this.state.username}</h1>
         <Room RoomId={this.state.roomId} token={this.state.token} />

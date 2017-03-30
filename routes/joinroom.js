@@ -10,7 +10,7 @@ module.exports = joinroom;
 
     // TODO: if req.body.screen || req.body.email don't exist, do something?
 
-    if ( req.body.room && req.session.type) {
+    if ( req.body.room) {
 
       // const token = jwt.sign(screenProfile, jwtSecret, { expiresIn: 60*12 });
       res.json({ room: req.body.room });
