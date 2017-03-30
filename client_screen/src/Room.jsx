@@ -39,6 +39,8 @@ export default class Room extends Component {
     });
 
     this.socket.on('gameStarted', (data) => {
+      console.log('Data: ',data);
+      console.log('Screen ...GameStarted')
       this.setState({ startGame: true, gameId: data.gameId });
     });
 
