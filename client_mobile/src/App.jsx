@@ -57,7 +57,6 @@ export default class App extends Component {
     }
   }
 
-
   handleRegisterChange (e) {
     console.log(e.target);
     this.setState({ [e.target.name]: e.target.value})
@@ -67,7 +66,6 @@ export default class App extends Component {
     e.preventDefault();
 
     // TODO: check passwords are the same
-
     axios.post('/register', {
       username: this.state.username,
       email: this.state.email,
@@ -185,7 +183,6 @@ export default class App extends Component {
     if (this.state.isLoggedIn === true && this.state.roomId >= 1) {
       return (
       <section className="main">
-        <NavigationBar handleClickSignIn={this.handleClickSignIn} handleClickSignUp={this.handleClickSignUp} handleClickLoggedOut={this.handleClickLoggedOut}/>
         <Banner />
          <h1>Welcome {this.state.username}</h1>
         <Room RoomId={this.state.roomId} token={this.state.token} />

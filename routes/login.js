@@ -13,8 +13,6 @@ module.exports = (db) => {
       console.log('authenticating token');
       const token = req.body.token;
       jwt.verify(token, jwtSecret, (err, decoded) => {
-        console.log('Decoded: ', decoded);
-        console.log('USERNAME', decoded.username );
         if(err){
           res.json({ isLoggedIn: false , username: '' });
         } else {
