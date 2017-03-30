@@ -13,9 +13,12 @@ export default class Room extends Component {
       gameId: 0,
       curRound: 0,
       maxRound: 5,
-      gameQuestion: [] 
+      gameQuestion: [],
+      startGame: 0,
+      gameEnd: 0
       // gameQuestion['Question', 'RightAnswer', 'WrongAnswer1', 'WrongAnswer2', 'WrongAnswer3]
     }
+    this.handleClick = this.handleClick.bind(this);
     this.socket = io.connect('http://localhost:3002', {
       query: 'token=' + this.props.token,
       'force new connection': true
@@ -47,42 +50,29 @@ export default class Room extends Component {
       console.log('disconnected');
     });
   }
-  
+
+  handleClick(){
+    console.log("clicked");
+    this.setState({ startGame: 1 });
+  }
+
+
   render() {
     // TODO: add a delay using react-delay-render module, maybe...
-    if ( this.props.startGame <= 0 ) {
-
+    if ( this.state.startGame <= 0 && this.state.gameEnd <= 0) {
         return (
-          <div>
-            <h1>You have joined Room {this.props.RoomId}</h1> <br />
-            <h3>We require a minimum of 4 Users to join...[{this.state.players.length}]</h3>
-            <button onClick={this.props.handleClickUser}>Add Us3r</button>
-            <button onClick={this.props.handleClickPlay}>Start G4me</button>
-            <p>.. From here, we show users joining, and next component is the Game + Questions</p>
-            <p>Token: {this.props.token}</p>
-          </div>
+          <GameLoad RoomId={this.props.RoomId} handleClick={this.handleClick}/>
         )
     }
     // TODO: Show all User Cards in a loading screen, suspense is good, use react-delay-render
-    if ( this.props.startGame >= 1 && this.props.LoadTimer >= 0) {
+    if ( this.state.startGame >= 1 && this.state.gameEnd <= 0) {
       return (
-        <div>
-          <GameLoad />
-        </div>
+          <GamePlay />
       )
     }
-    if ( this.props.startGame >= 1 && this.props.LoadTimer <= 0 ) {
+    if ( this.props.gameEnd == 1 ) {
       return (
-        <div>
-          <GamePlay gameEnd={this.props.gameEnd}/>
-        </div>
-      )
-    }
-    if ( this.props.gameEnd == 1) {
-      return (
-        <div>
           <GameEnd />
-        </div>
       )
     }
   }
