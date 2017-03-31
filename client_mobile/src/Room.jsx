@@ -14,7 +14,8 @@ export default class Room extends Component {
       isDisabled: '',
       buttonReset: 0,
       startGame: 0,
-      token: localStorage.getItem('token')
+      token: localStorage.getItem('token'),
+      username: localStorage.getItem('username')
     }
     this.handleClickAnswerA= this.handleClickAnswerA.bind(this);
     this.handleClickAnswerB= this.handleClickAnswerB.bind(this);
@@ -50,7 +51,7 @@ export default class Room extends Component {
 
   handleClickAnswerA() {
     console.log("This answer A was pressed");
-    this.socket.emit('answer', 'a');
+    this.socket.emit('answer', {answer: 'a', username: this.state.username});
     this.setState({answerA : true, isDisabled : 'disabled'});
   }
 
@@ -87,7 +88,7 @@ export default class Room extends Component {
     if ( this.state.startGame >= 1) {
       return (
           <Buttons
-            disabled={this.state.isDisabled}
+            // disabled={this.state.isDisabled}
             answerA={this.handleClickAnswerA}
             answerB={this.handleClickAnswerB}
             answerC={this.handleClickAnswerC}
