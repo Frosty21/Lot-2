@@ -13,7 +13,7 @@ export default class Room extends Component {
       gameId: 0,
       roundNumber: 0,
       roundLeft: 0,
-      gameQuestion: [],
+      gameQuestion: {},
       startGame: false,
       gameEnd: false
       // gameQuestion['Question', 'RightAnswer', 'WrongAnswer1', 'WrongAnswer2', 'WrongAnswer3]
@@ -41,11 +41,12 @@ export default class Room extends Component {
     this.socket.on('gameStarted', (data) => {
       console.log('Data: ',data);
       console.log('Screen ...GameStarted')
-      this.setState({ startGame: true, gameId: data.gameId });
+      this.setState({ gameId: data.gameId });
     });
 
     this.socket.on('roundChange', (data) => {
-      this.setState({ gameQuestion: data.gameQuestion, roundNumber:  data.roundNumber });
+      console.log('MOBILE: round change: ', data.gameQuestion)
+      this.setState({ startGame: true, gameQuestion: data.gameQuestion, roundNumber: data.roundNumber });
     });
   }
 
@@ -65,7 +66,7 @@ export default class Room extends Component {
     // TODO: Show all User Cards in a loading screen, suspense is good, use react-delay-render
     if ( this.state.startGame === true && this.state.gameEnd === false) {
       return (
-          <GamePlay GameQuestion={this.state.gameQuestion} />
+          <GamePlay gameQuestion={this.state.gameQuestion} RoundNumber={this.state.roundNumber} />
       )
     }
     if ( this.props.gameEnd === true ) {

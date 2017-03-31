@@ -91,7 +91,8 @@ export default class Room extends Component {
             answerA={this.handleClickAnswerA}
             answerB={this.handleClickAnswerB}
             answerC={this.handleClickAnswerC}
-            answerD={this.handleClickAnswerD}/>
+            answerD={this.handleClickAnswerD}
+            handleClickStartGame={this.handleClickStartGame}/>
       )
     }
     if ( this.state.gameEnd >= 1 ) {
