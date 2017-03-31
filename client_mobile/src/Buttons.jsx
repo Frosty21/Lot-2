@@ -9,6 +9,7 @@ export default class Buttons extends Component {
           <button disabled={this.props.disabled} className="btn btn-lg btn-success center-block" role="button" name="answerB" onClick={this.props.answerB}>B</button>
           <button disabled={this.props.disabled} className="btn btn-lg btn-success center-block" role="button" name="answerC" onClick={this.props.answerC}>C</button>
           <button disabled={this.props.disabled} className="btn btn-lg btn-success center-block" role="button" name="answerD" onClick={this.props.answerD}>D</button>
+          <button onClick={this.props.handleClickStartGame}>START</button>
       </div>
     )
   }
