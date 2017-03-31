@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 export default class GamePlay extends Component {
-
+// TODO: Warning message wipe
   render() {
     return (
       <div>
