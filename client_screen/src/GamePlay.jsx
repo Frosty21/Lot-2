@@ -1,11 +1,17 @@
 import React, {Component} from 'react';
 
 export default class GamePlay extends Component {
+
   render() {
-    return(
+    return (
       <div>
-        <h1>GamePlay</h1>
-      </div>
-    )
-  }  
+    {Object.keys(this.props.gameQuestion).map( (key)=>{
+      return (
+        <div>
+            {key} : {this.props.gameQuestion[key]}
+        </div>
+      )
+    })}
+    </div>
+  )}
 }

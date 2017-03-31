@@ -19,16 +19,12 @@ export default class App extends Component {
       roomId: 0,
       loadTimer: 10,
       gameEnd: 0,
-      startGame: 0,
       token: ''
     };
-    this.handleClickPlay = this.handleClickPlay.bind(this);
-    this.handleClickUser = this.handleClickUser.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  
   componentWillMount() {
     axios.post('/login', {
      type: 'screen'
@@ -37,18 +33,6 @@ export default class App extends Component {
       console.log('back', jsObj.token);
       this.setState({ token: jsObj.token });
     });
-  }
-  
-
-  handleClickUser(e){
-    console.log(e);
-    let newUser = this.state.users;
-    this.setState({ users: newUser.concat('user') })
-  }
-
-  handleClickPlay(e){
-    console.log(e);
-    this.setState({ startGame: 1 });
   }
 
   handleKeyPress(event) {
@@ -69,17 +53,23 @@ export default class App extends Component {
     event.preventDefault();
   }
 
+  handleClick(){
+    console.log("clicked");
+    this.setState({ startGame: 1 });
+  }
+
+
   render() {
     if( this.state.roomId == 0 ){
       return (
         <div>
           <JoinRoom handleSubmit={this.handleSubmit} handleKeyPress={this.handleKeyPress} />
         </div>
-      )    
+      )
     } else if( this.state.roomId >= 1 ){
       return (
         <div>
-          <Room token={this.state.token} startGame={this.state.startGame} gameEnd={this.state.gameEnd} handleClickPlay={this.handleClickPlay} handleClickUser={this.handleClickUser} LoadTimer={this.state.loadTimer} RoomId={this.state.roomId} Users={this.state.users} Scores={this.state.scores} StartTime={this.state.startTime} EndTime={this.state.endTime} GameId={this.state.gameId} />
+          <Room token={this.state.token} gameEnd={this.state.gameEnd} LoadTimer={this.state.loadTimer} RoomId={this.state.roomId} Users={this.state.users} Scores={this.state.scores} StartTime={this.state.startTime} EndTime={this.state.endTime} GameId={this.state.gameId} />
         </div>
       )
     }
