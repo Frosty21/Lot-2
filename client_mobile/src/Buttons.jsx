@@ -4,12 +4,13 @@ export default class Buttons extends Component {
 
   render() {
     return (
-      <div className="gameButtons">
-          <button className="btn btn-lg btn-success center-block" role="button" name="answerA" onClick={this.props.answerA}>A</button>
-          <button className="btn btn-lg btn-success center-block" role="button" name="answerB" onClick={this.props.answerB}>B</button>
-          <button className="btn btn-lg btn-success center-block" role="button" name="answerC" onClick={this.props.answerC}>C</button>
-          <button className="btn btn-lg btn-success center-block" role="button" name="answerD" onClick={this.props.answerD}>D</button>
-          <button onClick={this.props.handleClickStartGame}>START</button>
+      <div className="gallery">
+        <ul>
+          <li><img src="http://placehold.it/360x240" alt="First gallery image" onClick={this.props.answerA}/></li>
+          <li><img src="http://placehold.it/360x240" alt="Second gallery image" onClick={this.props.answerB}/></li>
+          <li><img src="http://placehold.it/360x240" alt="Third gallery image" onClick={this.props.answerC}/></li>
+          <li><img src="http://placehold.it/360x240" alt="Fourth gallery image" onClick={this.props.answerD}/></li>
+        </ul>
       </div>
     )
   }
