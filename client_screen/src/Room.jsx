@@ -40,14 +40,20 @@ export default class Room extends Component {
 
     this.socket.on('gameStarted', (data) => {
       console.log('Data: ',data);
-      console.log('Screen ...GameStarted')
+      console.log('Screen ...GameStarted');
       this.setState({ gameId: data.gameId });
     });
 
     this.socket.on('roundChange', (data) => {
-      console.log('MOBILE: round change: ', data.gameQuestion)
+      console.log('MOBILE: round change: ', data.gameQuestion);
       this.setState({ startGame: true, gameQuestion: data.gameQuestion, roundNumber: data.roundNumber });
     });
+
+    this.socket.on('gameEnded', (data) => {
+      console.log('GAME END: ', data);
+      this.setState({ gameEnd: true});
+    });
+
   }
 
   handleClick(){
@@ -69,7 +75,7 @@ export default class Room extends Component {
           <GamePlay gameQuestion={this.state.gameQuestion} RoundNumber={this.state.roundNumber} />
       )
     }
-    if ( this.props.gameEnd === true ) {
+    if ( this.state.gameEnd === true ) {
       return (
           <GameEnd />
       )

@@ -1,3 +1,13 @@
+html body{
+  background: #191C22;
+  color: white;
+}
+
+.navbar-default {
+  background-color: #20293c;
+  border-color: #163148;
+}
+
 .head-text {
   margin: auto;
 }
@@ -86,4 +96,49 @@
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
   padding: 1.25rem;
+}
+
+.gallery {}
+
+.gallery ul {
+    display: flex;
+    flex-flow: row wrap;
+    list-style: none;
+    margin: 32px 0;
+}
+
+.gallery li {
+    margin: 10px 10px;
+    flex-basis: calc(50% - 20px);
+}
+
+.gallery img {
+    width: 100%;
+    height: auto;
+}
+
+.jumbotron {
+  background: url(http://wallpapercave.com/wp/9okFIUz.jpg) center center no-repeat;
+}
+
+.modal-content {
+  background: grey;
+}
+
+#front {
+  background-color: #20293c;
+  border-color: #163148;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 100px;
+}
+
+.footer {
+    margin-bottom: 20px;
+    display: block;
+    color: #666;
+    text-transform: uppercase;
+    font-weight: 200;
+    font-size: 12px;
+    text-align: center;
 }

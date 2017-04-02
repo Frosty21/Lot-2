@@ -4,12 +4,13 @@ export default class Buttons extends Component {
 
   render() {
     return (
-      <div className="gameButtons">
-          <button disabled={this.props.disabled} className="btn btn-lg btn-success center-block" role="button" name="answerA" onClick={this.props.answerA}>A</button>
-          <button disabled={this.props.disabled} className="btn btn-lg btn-success center-block" role="button" name="answerB" onClick={this.props.answerB}>B</button>
-          <button disabled={this.props.disabled} className="btn btn-lg btn-success center-block" role="button" name="answerC" onClick={this.props.answerC}>C</button>
-          <button disabled={this.props.disabled} className="btn btn-lg btn-success center-block" role="button" name="answerD" onClick={this.props.answerD}>D</button>
-          <button onClick={this.props.handleClickStartGame}>START</button>
+      <div className="gallery">
+        <ul>
+          <li><img src={require('../img/A.png')} alt="First gallery image" onClick={this.props.answerA}/></li>
+          <li><img src={require('../img/B.png')} alt="Second gallery image" onClick={this.props.answerB}/></li>
+          <li><img src={require('../img/C.png')} alt="Third gallery image" onClick={this.props.answerC}/></li>
+          <li><img src={require('../img/D.png')} alt="Fourth gallery image" onClick={this.props.answerD}/></li>
+        </ul>
       </div>
     )
   }

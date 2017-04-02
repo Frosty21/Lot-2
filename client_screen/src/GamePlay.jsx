@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 export default class GamePlay extends Component {
-
+// TODO: Warning message wipe
   render() {
     return (
       <div>
@@ -11,7 +11,7 @@ export default class GamePlay extends Component {
             {key} : {this.props.gameQuestion[key]}
         </div>
       )
-    })}
+    }).sort(function (a, b) {return Math.random() - 0.5;})}
     </div>
   )}
 }

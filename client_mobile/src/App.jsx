@@ -11,6 +11,10 @@ import SignUp from './SignUp.jsx';
 import JoinRoom from './JoinRoom.jsx';
 import NavigationBar from './NavigationBar.jsx';
 import Room from './Room.jsx';
+import Button from 'react-bootstrap/lib/Button';
+import Modal from 'react-bootstrap/lib/Modal';
+import Footer from './Footer.jsx';
+
 
 export default class App extends Component {
   constructor(props) {
@@ -27,7 +31,8 @@ export default class App extends Component {
       password: '',
       password_confirmation: '',
       token: '',
-      roomId: 0
+      roomId: 0,
+      showModal: false
     };
     this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this);
     this.handleClickSignIn = this.handleClickSignIn.bind(this);
@@ -36,6 +41,8 @@ export default class App extends Component {
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClickLoggedOut = this.handleClickLoggedOut.bind(this);
+    this.close = this.close.bind(this);
+    this.open = this.open.bind(this);
   }
 
 
@@ -147,6 +154,14 @@ export default class App extends Component {
     this.setState({isLoggedIn: false});
   }
 
+  close() {
+    this.setState({ showModal: false });
+  }
+
+  open() {
+    this.setState({ showModal: true });
+  }
+
   render() {
     const showSignIn = this.state.showSignIn;
     const showSignUp = this.state.showSignUp;
@@ -174,6 +189,33 @@ export default class App extends Component {
         <Banner />
         {login}
         {register}
+
+        <div className="button-modal">
+
+          <Button
+            bsStyle="primary"
+            bsSize="large"
+            id="front"
+            onClick={this.open}
+          >
+            How to Play!
+          </Button>
+
+          <Modal show={this.state.showModal} onHide={this.close}>
+            <Modal.Header closeButton>
+              <Modal.Title>Legends of Trivia</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <h4>How to play:</h4>
+              <hr />
+              <p> Minimum two players to start the game.</p>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button onClick={this.close}>Close</Button>
+            </Modal.Footer>
+          </Modal>
+        </div>
+        <Footer />
       </section>
     )}
 
@@ -182,8 +224,8 @@ export default class App extends Component {
       <section className="main">
         <NavigationBar handleClickSignIn={this.handleClickSignIn} handleClickSignUp={this.handleClickSignUp} handleClickLoggedOut={this.handleClickLoggedOut} getUsername={this.state.username}/>
         <Banner />
-         <h1>Welcome {this.state.username}</h1>
           <JoinRoom handleSubmit={this.handleSubmit} handleKeyPress={this.handleKeyPress} />
+        <Footer />
       </section>
     )}
 
@@ -191,8 +233,8 @@ export default class App extends Component {
       return (
       <section className="main">
         <Banner />
-         <h1>Welcome {this.state.username}</h1>
         <Room RoomId={this.state.roomId} token={this.state.token} />
+        <Footer />
       </section>
     )}
 
