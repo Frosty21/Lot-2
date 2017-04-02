@@ -1,3 +1,13 @@
+html body{
+  background: #191C22;
+  color: white;
+}
+
+.navbar-default {
+  background-color: #20293c;
+  border-color: #163148;
+}
+
 .head-text {
   margin: auto;
 }
@@ -105,4 +115,8 @@
 .gallery img {
     width: 100%;
     height: auto;
+}
+
+.jumbotron {
+  background: url(http://wallpapercave.com/wp/9okFIUz.jpg) center center no-repeat;
 }
