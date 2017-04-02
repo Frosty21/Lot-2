@@ -6,7 +6,7 @@ export default class Gamelobby extends Component {
       <div>
         <button onClick={this.props.handleClickStartGame}>START</button>
         <div className="back-button">
-          <button type="button" className="btn btn-link">Back to Menu</button>
+          <button type="button" className="btn btn-link"><a href="/">Back to Menu</a></button>
         </div>
       </div>
     )

@@ -6,10 +6,10 @@ export default class Buttons extends Component {
     return (
       <div className="gallery">
         <ul>
-          <li><img src="http://placehold.it/360x240" alt="First gallery image" onClick={this.props.answerA}/></li>
-          <li><img src="http://placehold.it/360x240" alt="Second gallery image" onClick={this.props.answerB}/></li>
-          <li><img src="http://placehold.it/360x240" alt="Third gallery image" onClick={this.props.answerC}/></li>
-          <li><img src="http://placehold.it/360x240" alt="Fourth gallery image" onClick={this.props.answerD}/></li>
+          <li><img src={require('../img/A.png')} alt="First gallery image" onClick={this.props.answerA}/></li>
+          <li><img src={require('../img/B.png')} alt="Second gallery image" onClick={this.props.answerB}/></li>
+          <li><img src={require('../img/C.png')} alt="Third gallery image" onClick={this.props.answerC}/></li>
+          <li><img src={require('../img/D.png')} alt="Fourth gallery image" onClick={this.props.answerD}/></li>
         </ul>
       </div>
     )
