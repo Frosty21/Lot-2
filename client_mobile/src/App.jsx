@@ -182,7 +182,6 @@ export default class App extends Component {
       <section className="main">
         <NavigationBar handleClickSignIn={this.handleClickSignIn} handleClickSignUp={this.handleClickSignUp} handleClickLoggedOut={this.handleClickLoggedOut} getUsername={this.state.username}/>
         <Banner />
-         <h1>Welcome {this.state.username}</h1>
           <JoinRoom handleSubmit={this.handleSubmit} handleKeyPress={this.handleKeyPress} />
       </section>
     )}
@@ -191,7 +190,6 @@ export default class App extends Component {
       return (
       <section className="main">
         <Banner />
-         <h1>Welcome {this.state.username}</h1>
         <Room RoomId={this.state.roomId} token={this.state.token} />
       </section>
     )}
