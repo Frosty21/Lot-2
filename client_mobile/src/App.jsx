@@ -13,6 +13,7 @@ import NavigationBar from './NavigationBar.jsx';
 import Room from './Room.jsx';
 import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
+import Footer from './Footer.jsx';
 
 
 export default class App extends Component {
@@ -214,6 +215,7 @@ export default class App extends Component {
             </Modal.Footer>
           </Modal>
         </div>
+        <Footer />
       </section>
     )}
 
@@ -223,6 +225,7 @@ export default class App extends Component {
         <NavigationBar handleClickSignIn={this.handleClickSignIn} handleClickSignUp={this.handleClickSignUp} handleClickLoggedOut={this.handleClickLoggedOut} getUsername={this.state.username}/>
         <Banner />
           <JoinRoom handleSubmit={this.handleSubmit} handleKeyPress={this.handleKeyPress} />
+        <Footer />
       </section>
     )}
 
@@ -231,6 +234,7 @@ export default class App extends Component {
       <section className="main">
         <Banner />
         <Room RoomId={this.state.roomId} token={this.state.token} />
+        <Footer />
       </section>
     )}
 
