@@ -1,15 +1,19 @@
 import React, {Component} from 'react';
-import Avatar from 'react-avatar';
-// import GamePlay from './GamePlay.jsx';
-export default class GameLoad extends Component {
+// import Avatar from 'react-avatar';
+import Gravatar from 'react-gravatar';
 
+export default class GameLoad extends Component {
+  
   render() {
     return(
       <div>
        <h1> GameLoad </h1>
         <Preload/>
+        <br/>
         <div className="avatarWrapper">
-            <Avatar className="avatar" name="Wim Mostmans" />
+            {/*<Gravatar email={this.props.email} size={150}/>*/}
+            <Gravatar email="nathan.froese21@gmail.com" name="nathan froese"/>
+            
         </div>
         <div>
           <h1>You have joined Room {this.props.RoomId}</h1> <br />
@@ -36,8 +40,9 @@ var Preload = React.createClass({
         <div className="preloading-bottom mask">
           <div className="plane"></div>
         </div>
+        <div>
         <p className="preloading-text" ><i>Waiting for Game to start...</i></p>
-        {/*<Avatar title="Javier" image="https://placeimg.com/80/80/animals" />*/}
+        </div>
       </div>
     </div>
     )

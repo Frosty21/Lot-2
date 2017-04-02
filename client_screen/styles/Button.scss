@@ -1,0 +1,30 @@
+.button-component {
+
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 4px;
+  line-height: 18px;
+  text-transform: uppercase;
+  color: #263134;
+
+  background-color: #25bbbb;
+  padding: 18px 40px;
+  min-width: 220px;
+  border: 0;
+  border-radius: 4px;
+
+  cursor: pointer;
+
+  transition: 200ms background-color, 200ms opacity;
+
+  &[disabled] {
+    opacity: .3;
+    cursor: default;
+  }
+
+  &:not([disabled]) {
+    &:hover {
+      background-color: white;
+    }
+  }
+}

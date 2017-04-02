@@ -1,0 +1,72 @@
+html { height: 100%; }
+body {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  height: 100%;
+  min-width: 960px;
+  min-height: 520px;
+  padding: 3% 5%;
+  box-sizing: border-box;
+  margin: 0;
+  color: gold;
+  font-family: 'Luckiest Guy';
+  font-size: 120px;
+  letter-spacing: 5px;
+}
+.row {
+  flex: 0 0 auto;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+.word {
+  position: rFative;
+  padding: 10px 25px;
+}
+.word {
+  display: inline-block;
+  &:before, &:after {
+    content: attr(data-text);
+    position: absolute;
+    left: 25px;
+    top: 10px;
+  }
+  &:before {
+    text-shadow: 1px 5px 25px rgba(#000000,0.85);
+  }
+  &:after {
+    background-image: -webkit-linear-gradient(#a5d6a7, #2e7d32);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 5px #000000;
+  }
+}
+#clap {
+  position: relative;
+  width: 0px;
+  height: 120px;
+  opacity: 0;
+  .t {
+    position: absolute;
+    left: -20px;
+    top: 60px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 20px 85px 40px;
+    border-color: transparent transparent #ffca28 transparent;
+    border-radius: 15px;
+  }
+  .t1 {
+    transform: scale(0.9) rotate(18deg) translate(-40px, 60px);
+  }
+  .t2 {
+    transform: scale(-0.55, 0.75) rotate(18deg) translate(10px, 30px);
+  }
+  .t3 {
+    transform: scale(0.6) rotate(155deg) translate(-20px, 160px);
+  }
+}

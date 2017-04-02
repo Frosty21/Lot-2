@@ -1,0 +1,99 @@
+html {
+  height: 100%;
+}
+
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100%;
+  min-width: 960px;
+  min-height: 520px;
+  padding: 3% 5%;
+  box-sizing: border-box;
+  margin: 0;
+  color: gold;
+  font-family: 'Luckiest Guy';
+  font-size: 120px;
+  letter-spacing: 5px;
+}
+
+.row {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.word {
+  position: rFative;
+  padding: 10px 25px;
+}
+
+.word {
+  display: inline-block;
+}
+.word:before, .word:after {
+  content: attr(data-text);
+  position: absolute;
+  left: 25px;
+  top: 10px;
+}
+.word:before {
+  text-shadow: 1px 5px 25px rgba(0, 0, 0, 0.85);
+}
+.word:after {
+  background-image: -webkit-linear-gradient(#a5d6a7, #2e7d32);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 5px #000000;
+}
+
+#clap {
+  position: relative;
+  width: 0px;
+  height: 120px;
+  opacity: 0;
+}
+#clap .t {
+  position: absolute;
+  left: -20px;
+  top: 60px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 20px 85px 40px;
+  border-color: transparent transparent #ffca28 transparent;
+  border-radius: 15px;
+}
+#clap .t1 {
+  -webkit-transform: scale(0.9) rotate(18deg) translate(-40px, 60px);
+          transform: scale(0.9) rotate(18deg) translate(-40px, 60px);
+}
+#clap .t2 {
+  -webkit-transform: scale(-0.55, 0.75) rotate(18deg) translate(10px, 30px);
+          transform: scale(-0.55, 0.75) rotate(18deg) translate(10px, 30px);
+}
+#clap .t3 {
+  -webkit-transform: scale(0.6) rotate(155deg) translate(-20px, 160px);
+          transform: scale(0.6) rotate(155deg) translate(-20px, 160px);
+}

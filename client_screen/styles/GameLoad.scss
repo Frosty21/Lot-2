@@ -74,7 +74,6 @@
   color: #fff;
   position: absolute;
   left: -3px;
-  top: 45px;
   font-family: Arial;
   text-align: center;
   font-size: 10px;
@@ -107,12 +106,16 @@
   }
 }
 
-.avatarWrapper {
-  margin-top: 20px;
-  display: flex
-}
+// .avatarWrapper {
+//   display: flex
+// }
 
 
-.avatar {
+// .avatar {
+//   margin: auto;
+// }
+
+img.react-gravatar{
+  display: flex;
   margin: auto;
 }
