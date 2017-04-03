@@ -17,8 +17,6 @@ export default class GameLoad extends Component {
         </div>
         <div>
           <h1>You have joined Room {this.props.RoomId}</h1> <br />
-          <button onClick={this.props.handleClick}>Start G4me</button>
-          <p>.. From here, we show users joining, and next component is the Game + Questions</p>
         </div>
       </div>
 
@@ -41,7 +39,7 @@ var Preload = React.createClass({
           <div className="plane"></div>
         </div>
         <div>
-        <p className="preloading-text" ><i>Waiting for Game to start...</i></p>
+        <p className="preloading-text" ><i></i></p>
         </div>
       </div>
     </div>
