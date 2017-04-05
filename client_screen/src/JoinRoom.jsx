@@ -5,6 +5,9 @@ export default class JoinRoom extends Component {
   render() {
     return (
       <main className="room">
+        <div className="title">
+         Legends of Trivia
+        </div>
         <div className="room-choose">
           <form onSubmit={this.props.handleSubmit}>
             <label>
