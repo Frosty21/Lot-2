@@ -11,7 +11,6 @@ export default class Room extends Component {
       answerB: false,
       answerC: false,
       answerD: false,
-      isDisabled: '',
       buttonsLocked: false,
       startGame: 0,
       token: localStorage.getItem('token'),
@@ -21,7 +20,6 @@ export default class Room extends Component {
     this.handleClickAnswerB= this.handleClickAnswerB.bind(this);
     this.handleClickAnswerC= this.handleClickAnswerC.bind(this);
     this.handleClickAnswerD= this.handleClickAnswerD.bind(this);
-    this.gameRoundLogic = this.gameRoundLogic.bind(this);
     this.handleClickStartGame = this.handleClickStartGame.bind(this);
     this.socket = io.connect('http://localhost:3002', {
       query: 'token=' + this.state.token
@@ -80,7 +78,6 @@ export default class Room extends Component {
       return (
           <Buttons
             buttonLock={this.state.buttonsLocked}
-            // disabled={this.state.isDisabled}
             answerA={this.handleClickAnswerA}
             answerB={this.handleClickAnswerB}
             answerC={this.handleClickAnswerC}
