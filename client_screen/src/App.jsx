@@ -45,9 +45,6 @@ export default class App extends Component {
       }).then( (res) => {
         const jsObj = JSON.parse(res.request.response);
         this.setState({ roomId: jsObj.room });
-        if ( roomId >= 1) {
-
-        }
       });
     }
   }
@@ -65,13 +62,13 @@ export default class App extends Component {
   render() {
     if( this.state.roomId == 0 ){
       return (
-        <div className="background-front">
+        <div>
             <JoinRoom handleSubmit={this.handleSubmit} handleKeyPress={this.handleKeyPress} />
         </div>
       )
     } else if( this.state.roomId >= 1 ){
       return (
-        <div className="background-game">
+        <div>
           <Room token={this.state.token} gameEnd={this.state.gameEnd} LoadTimer={this.state.loadTimer} RoomId={this.state.roomId} Users={this.state.users} Scores={this.state.scores} StartTime={this.state.startTime} EndTime={this.state.endTime} GameId={this.state.gameId} />
         </div>
       )
