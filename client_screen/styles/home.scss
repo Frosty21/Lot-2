@@ -4,7 +4,9 @@ h1 {
 }
 
 body {
-  background: black;
+  background: url('../img/img4.jpeg');
+  background-size: 100%;
+  background-repeat: no-repeat;
   color: grey;
   font-family: 'Open Sans', sans-serif;
   font-size: 14px;
@@ -98,4 +100,14 @@ body {
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
   padding: 1.25rem;
+}
+
+.background-front {
+  background: url('../img/img4.jpeg');
+  background-size: 100%;
+}
+
+.background-game {
+  background: url('../img/img3.jpeg');
+  background-size: 100%;
 }
