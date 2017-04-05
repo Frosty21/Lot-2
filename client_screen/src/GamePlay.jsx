@@ -49,8 +49,27 @@ export default class GamePlay extends Component {
                   </div>
               </div>
               <div className="col2">
+                <div className="user">
+                  <p> User 1 </p>
+                  <span> Score: 0/5 </span>
+                </div>
+
+                <div className="user">
+                  <p> User 2 </p>
+                  <span> Score: 0/5 </span>
+                </div>
               </div>
               <div className="col3">
+                <div className="user">
+                  <p> User 3 </p>
+                  <span> Score: 0/5 </span>
+                </div>
+
+                <div className="user">
+                  <p> User 4 </p>
+                  <span> Score: 0/5 </span>
+                </div>
+
               </div>
           </div>
       </div>
