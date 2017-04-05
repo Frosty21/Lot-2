@@ -7,13 +7,13 @@ export default class JoinRoom extends Component {
     return (
       <main className="room">
         <div className="title">
-         Legends of Trivia
+         <h1>Legends of Trivia</h1>
         </div>
         <div className="room-choose">
           <form onSubmit={this.props.handleSubmit}>
             <label>
-              New Room:<br />
-              <input id="room-input" type='number' value={this.props.value} onKeyPress={this.props.handleKeyPress} />
+              <br/>
+              <input id="room-input" placeholder="Enter Room Number" type='number' value={this.props.value} onKeyPress={this.props.handleKeyPress} />
             </label>
           </form>
         </div>

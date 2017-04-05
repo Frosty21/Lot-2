@@ -1,6 +1,17 @@
-h1 {
-  color: #3c181c;
+
+
+h1{
+   -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  padding: 20px;
+  border: none;
+  font: normal 60px/1 "Monoton", Helvetica, sans-serif;
+  color: rgba(255,255,255,1);
   text-align: center;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  text-shadow: 0 0 5px rgb(255,255,255) , 0 0 10px rgb(255,255,255) , 0 0 15px rgb(255,255,255) , 0 0 20px rgb(105, 105, 105) , 0 0 35px rgb(105, 105, 105) , 0 0 40px rgb(105, 105, 105) , 0 0 50px rgb(105, 105, 105) , 0 0 75px rgb(105, 105, 105);
 }
 
 .head-text {
@@ -316,5 +327,3 @@ p.layoutstyle {
       height: 630px;
 
   }
-
-
