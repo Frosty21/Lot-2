@@ -12,7 +12,7 @@ export default class Room extends Component {
       answerC: false,
       answerD: false,
       isDisabled: '',
-      buttonReset: 0,
+      buttonsLocked: false,
       startGame: 0,
       token: localStorage.getItem('token'),
       username: localStorage.getItem('username')
@@ -28,10 +28,6 @@ export default class Room extends Component {
     });
   }
 
-  gameRoundLogic() {
-    this.setState({ buttonReset: this.state.buttonReset + 1 });
-  }
-
   componentDidMount () {
     const room = this.props.RoomId;
     const username = this.state.username;
@@ -43,35 +39,29 @@ export default class Room extends Component {
       }
     });
 
-
-
     this.socket.on('roundChange', data => {
-      this.gameRoundLogic();
+      this.setState({ buttonsLocked: false });
     });
   }
 
   handleClickAnswerA() {
-    console.log("This answer A was pressed");
     this.socket.emit('answer', {answer: 'a', username: this.state.username});
-    this.setState({answerA : true, isDisabled : 'disabled'});
+    this.setState({ buttonsLocked: true })
   }
 
   handleClickAnswerB() {
-    console.log("This answer B was pressed");
-    this.socket.emit('answer', 'b');
-    this.setState({answerB : true, isDisabled : 'disabled'});
+    this.socket.emit('answer', {answer: 'b', username: this.state.username});
+    this.setState({ buttonsLocked: true })
   }
 
   handleClickAnswerC() {
-    console.log("This answer C was pressed");
-    this.socket.emit('answer', 'c');
-    this.setState({answerC : true, isDisabled : 'disabled'});
+    this.socket.emit('answer', {answer: 'c', username: this.state.username});
+    this.setState({ buttonsLocked: true })
   }
 
   handleClickAnswerD() {
-    console.log("This answer D was pressed");
-    this.socket.emit('answer', 'd');
-    this.setState({answerD : true, isDisabled : 'disabled'});
+    this.socket.emit('answer', {answer: 'd', username: this.state.username});
+    this.setState({ buttonsLocked: true })
   }
 
   handleClickStartGame() {
@@ -89,6 +79,7 @@ export default class Room extends Component {
     if ( this.state.startGame >= 1) {
       return (
           <Buttons
+            buttonLock={this.state.buttonsLocked}
             // disabled={this.state.isDisabled}
             answerA={this.handleClickAnswerA}
             answerB={this.handleClickAnswerB}
