@@ -15,6 +15,7 @@ export default class GameEnd extends Component {
     }
   }
   render() {
+    document.getElementById("background-screen").className = "background-GameEnd";
     const PartyEnd = () => {
       if(this.state.loading) {
         return(
