@@ -232,7 +232,6 @@ export default class App extends Component {
     if (this.state.isLoggedIn === true && this.state.roomId >= 1) {
       return (
       <section className="main">
-        <Banner />
         <Room RoomId={this.state.roomId} token={this.state.token} />
         <Footer />
       </section>
