@@ -34,16 +34,17 @@ export default class Room extends Component {
 
   componentDidMount () {
     const room = this.props.RoomId;
-    console.log('Mobile: room: ', room)
-    this.socket.emit('join', {room: room });
-    this.socket.emit(room, "I'm ready to receive data..");
+    const username = this.state.username;
+    this.socket.emit('join', {room: room , username: username });
 
-    this.socket.on(room, (data) => {
-      console.log('Mobile: data: ', data);
-      this.socket.emit('message', 'Im THE CLIENT!');
-    }).on('disconnect', () => {
-      console.log('disconnected');
+    this.socket.on('gameStarted', data => {
+      if(data){
+        this.setState({ startGame: 1 });
+      }
     });
+
+
+
     this.socket.on('roundChange', data => {
       this.gameRoundLogic();
     });
@@ -82,7 +83,7 @@ export default class Room extends Component {
   render() {
     if ( this.state.startGame <= 0) {
         return (
-          <Gamelobby handleClickStartGame={this.handleClickStartGame}/>
+          <Gamelobby handleClickStartGame={this.handleClickStartGame} />
         )
     }
     if ( this.state.startGame >= 1) {

@@ -3,7 +3,6 @@ h1 {
   text-align: center;
 }
 
-
 .head-text {
   margin: auto;
 }
@@ -92,4 +91,14 @@ h1 {
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
   padding: 1.25rem;
+}
+
+.background-front {
+  background: url('../img/img4.jpeg');
+  background-size: 100%;
+}
+
+.background-game {
+  background: url('../img/img3.jpeg');
+  background-size: 100%;
 }

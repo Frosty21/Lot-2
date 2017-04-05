@@ -6,6 +6,9 @@ export default class JoinRoom extends Component {
     document.getElementById('background-screen').className = 'background-JoinRoom';
     return (
       <main className="room">
+        <div className="title">
+         Legends of Trivia
+        </div>
         <div className="room-choose">
           <form onSubmit={this.props.handleSubmit}>
             <label>
