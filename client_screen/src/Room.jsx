@@ -13,7 +13,8 @@ export default class Room extends Component {
       gameId: 0,
       roundNumber: 0,
       roundLeft: 0,
-      gameQuestion: {},
+      gameQuestion: '',
+      gameAnswers: [],
       startGame: false,
       gameEnd: false
       // gameQuestion['Question', 'RightAnswer', 'WrongAnswer1', 'WrongAnswer2', 'WrongAnswer3]
@@ -29,14 +30,11 @@ export default class Room extends Component {
     const room = this.props.RoomId;
 
     this.socket.emit('join', {room: room });
-    // this.socket.emit(room, "I'm ready to receive data..");
 
-    this.socket.on(room, (data) => {
-      // console.log(data);
-      // this.socket.emit('message', 'Im THE SCREEN!');
-    }).on('disconnect', () => {
-      console.log('disconnected');
-    });
+    // this.socket.on(room, (data) => {
+    // }).on('disconnect', () => {
+    //   console.log('disconnected');
+    // });
 
     this.socket.on('users', data => {
       console.log('users list: ', data);
@@ -49,7 +47,7 @@ export default class Room extends Component {
 
     this.socket.on('roundChange', (data) => {
       console.log('Screen: round change: ', data.gameQuestion);
-      this.setState({ startGame: true, gameQuestion: data.gameQuestion, roundNumber: data.roundNumber });
+      this.setState({ startGame: true, gameQuestion: data.gameQuestion, gameAnswers: data.gameAnswers, roundNumber: data.roundNumber });
     });
 
     this.socket.on('gameEnded', (data) => {

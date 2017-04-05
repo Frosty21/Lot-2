@@ -176,7 +176,7 @@ h2 {
   border: black solid 2px;
   padding: 40px 15px 40px 15px;
   margin: 90px 0px;
-  background-color: white;
+  background-color: black;
 }
 
 body {
@@ -184,7 +184,7 @@ body {
     padding:0;
     border:0;     /* This removes the border around the viewport in old versions of IE */
     width:100%;
-    background:#eee;
+    background: black;
     min-width:600px;    /* Minimum width of layout - remove line if not required */
           /* The min-width property does not work in old versions of Internet Explorer */
 font-size:90%;
@@ -211,3 +211,58 @@ text-align:center;
       width:100%;       /* width of whole page */
   overflow:hidden;    /* This chops off any overhanging divs */
 }
+/* holy grail 3 column settings */
+.holygrail {
+    background: black;      /* Right column background colour */
+}
+  .holygrail .colmid {
+      float:left;
+      width:200%;
+      margin-left:-200px;   /* Width of right column */
+      position:relative;
+      right:100%;
+      background: url(../img/3.jpg) no-repeat;
+      background-size: 100%;
+      background-position: center center;
+      /* Centre column background colour */
+  }
+  .holygrail .colleft {
+      float:left;
+      width:100%;
+      margin-left:-50%;
+      position:relative;
+      left:400px;           /* Left column width + right column width */
+      background: black;     /* Left column background colour */
+  }
+  .holygrail .col1wrap {
+      float:left;
+    width:50%;
+    position:relative;
+    right:200px;          /* Width of left column */
+    padding-bottom:1em;   /* Centre column bottom padding. Leave it out if it's zero */
+}
+.holygrail .col1 {
+      margin:0 215px;       /* Centre column side padding:
+                            Left padding = left column width + centre column left padding width
+                            Right padding = right column width + centre column right padding width */
+      position:relative;
+    left:200%;
+    overflow:hidden;
+}
+  .holygrail .col2 {
+      float:left;
+      float:right;      /* This overrides the float:left above */
+      width:170px;          /* Width of left column content (left column width minus left and right padding) */
+      position:relative;
+      right:15px;           /* Width of the left-had side padding on the left column */
+  }
+  .holygrail .col3 {
+      float:left;
+      float:right;      /* This overrides the float:left above */
+      width:170px;          /* Width of right column content (right column width minus left and right padding) */
+      margin-right:45px;    /* Width of right column right-hand padding + left column left and right padding */
+      position:relative;
+      left:50%;
+      height: 630px;
+
+  }
