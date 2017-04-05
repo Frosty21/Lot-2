@@ -125,6 +125,7 @@ h1{
   position: fixed;
   width: 200px;
   z-index: 10;
+  background-color: white;
 }
 
 .timer-number {
@@ -137,6 +138,7 @@ h1{
   position: fixed;
   width: 200px;
   z-index: 11;
+  background-color: white;
 }
 
 .question-number-text {
@@ -146,17 +148,26 @@ h1{
 
 .answers-box {
   display: flex;
+  flex-wrap: wrap;
   max-width: 1400px;
-  margin: 40px auto 0 auto 0;
+  padding-top: 60px;
 }
 
 .answer {
   flex: 1;
-  padding: 20px;
-  margin-bottom: 20px;
-  text-align: center;
   border: 2px solid;
-  flex-wrap: wrap;
+  padding: 100px 0;
+}
+
+.answer:nth-child(odd) {
+  flex: 0 0 50%;
+}
+
+.user {
+  border: black solid 2px;
+  padding: 40px 15px 40px 15px;
+  margin: 90px 0px;
+  background-color: white;
 }
 
 body {
@@ -170,25 +181,7 @@ body {
 font-size:90%;
 text-align:center;
 }
-a {
-    color:#369;
-}
-a:hover {
-  color:#fff;
-  background:#369;
-  text-decoration:none;
-}
-  h1, h2, h3 {
-      margin:.8em 0 .2em 0;
-      padding:0;
-  }
-  p {
-      margin:.4em 0 .8em 0;
-      padding:0;
-  }
-img {
-  margin:10px 0 5px;
-}
+
 /*wrapper styles */
 .fixed #wrapper {
   width:800px;
@@ -200,73 +193,7 @@ img {
   text-align:left;
   margin:0;
 }
-/* Header styles */
-  #header {
-      clear:both;
-      float:left;
-      width:100%;
-  background:#fff;
-  }
-#header {
-  border-bottom:1px solid #000;
-}
-#header p,
-#header h1,
-#header h2 {
-    padding:.4em 15px 0 15px;
-      margin:0;
-}
-p.layoutstyle {
-  float:right;
-}
-#header ul {
-    clear:left;
-    float:left;
-    width:100%;
-    list-style:none;
-    margin:10px 0 0 0;
-    padding:0;
-}
-#header ul li {
-    display:inline;
-    list-style:none;
-    margin:0;
-    padding:0;
-}
-#header ul li a {
-    display:block;
-    float:left;
-    margin:0 0 0 1px;
-    padding:3px 10px;
-    text-align:center;
-    background:#eee;
-    color:#000;
-    text-decoration:none;
-    position:relative;
-    left:15px;
-  line-height:1.3em;
-}
-#header ul li a:hover {
-    background:#369;
-  color:#fff;
-}
-#header ul li a.active,
-#header ul li a.active:hover {
-    color:#fff;
-    background:#000;
-    font-weight:bold;
-}
-#header ul li a span {
-    display:block;
-}
-/* 'widths' sub menu */
-#layoutdims {
-  clear:both;
-  border-top:4px solid #000;
-  margin:0;
-  padding:6px 15px !important;
-  text-align:right;
-}
+
 /* column container */
 .colmask {
   position:relative;    /* This fixes the IE7 overflow hidden bug and stops the layout jumping out of place */
@@ -277,7 +204,7 @@ p.layoutstyle {
 }
 /* holy grail 3 column settings */
 .holygrail {
-    background:#ff9;      /* Right column background colour */
+    background: navy;      /* Right column background colour */
 }
   .holygrail .colmid {
       float:left;
@@ -285,7 +212,10 @@ p.layoutstyle {
       margin-left:-200px;   /* Width of right column */
       position:relative;
       right:100%;
-      background:#fff;      /* Centre column background colour */
+      background: url(../img/3.jpg) no-repeat;
+      background-size: 100%;
+      background-position: center center;
+      /* Centre column background colour */
   }
   .holygrail .colleft {
       float:left;
@@ -293,7 +223,7 @@ p.layoutstyle {
       margin-left:-50%;
       position:relative;
       left:400px;           /* Left column width + right column width */
-      background:#FFD8B7;     /* Left column background colour */
+      background: navy;     /* Left column background colour */
   }
   .holygrail .col1wrap {
       float:left;
