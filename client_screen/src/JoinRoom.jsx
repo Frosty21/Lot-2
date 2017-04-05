@@ -13,7 +13,7 @@ export default class JoinRoom extends Component {
           <form onSubmit={this.props.handleSubmit}>
             <label>
               <br/>
-              <input id="room-input" placeholder="Enter Room Number" type='number' value={this.props.value} onKeyPress={this.props.handleKeyPress} />
+              <input id="room-input" placeholder="Room #" type='number' value={this.props.value} onKeyPress={this.props.handleKeyPress} />
             </label>
           </form>
         </div>

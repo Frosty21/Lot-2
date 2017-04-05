@@ -10,22 +10,24 @@ export default class GameLoad extends Component {
       .className = 'background-GameLoad';
     return (
       <div>
+      <section>
+      <div>
         <h1>
-          GameLoad
+          Legends of Trivia
         </h1>
-        <Preload/>
+        <Preload />
         <br/>
         <div className="avatarWrapper">
           <Gravatar email="nathan.froese21@gmail.com" name="nathan froese"/>
         </div>
-        <div>
-          <h1>You have joined Room {this.props.RoomId}</h1>
-          <br/>
-        </div>
+      </div>
+      <h2>Waiting for players to Join Room #{this.props.RoomId}</h2>
+      </section>
       </div>
     )
   }
 }
+
 var Preload = React.createClass({
   render: function () {
     return (
