@@ -1,16 +1,33 @@
 
 
-h1{
+h1 {
    -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
   box-sizing: content-box;
   padding: 20px;
   border: none;
-  font: normal 60px/1 "Monoton", Helvetica, sans-serif;
+  font: normal 60px/1 "Luckiest Guy", Helvetica, sans-serif;
   color: rgba(255,255,255,1);
   text-align: center;
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
+  text-shadow: 0 0 5px black, 0 0 10px black, 0 0 15px black, 0 0 20px black, 0 0 35px black, 0 0 40px black, 0 0 50px white, 0 0 75px white;
+}
+
+h2 {
+  position: relative;
+  line-height: 400px;
+  margin: 100px;
+  //  -webkit-box-sizing: content-box;
+  // -moz-box-sizing: content-box;
+  // box-sizing: content-box;
+  // padding: 10px;
+  // border: none;
+  font: normal 30px/1 "Luckiest Guy", Helvetica, sans-serif;
+  color: rgba(255,255,255,1);
+  // text-align: center;
+  // -o-text-overflow: ellipsis;
+  // text-overflow: ellipsis;
   text-shadow: 0 0 5px black, 0 0 10px black, 0 0 15px black, 0 0 20px black, 0 0 35px black, 0 0 40px black, 0 0 50px white, 0 0 75px white;
 }
 

@@ -111,16 +111,10 @@
   }
 }
 
-// .avatarWrapper {
-//   display: flex
-// }
-
-
-// .avatar {
-//   margin: auto;
-// }
-
-img.react-gravatar{
-  display: flex;
-  margin: auto;
+.avatarWrapper {
+  position: relative;
+  margin-top: 200px;
+  margin-left: 100px;
+  margin-right: 100px;
+  float: left;
 }
