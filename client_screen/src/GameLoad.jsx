@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 // import Avatar from 'react-avatar';
-import Gravatar from 'react-gravatar';
+import Avatar from 'react-avatar';
 
 export default class GameLoad extends Component {
 
@@ -10,19 +10,19 @@ export default class GameLoad extends Component {
       .className = 'background-GameLoad';
     return (
       <div>
-      <section>
-      <div>
         <h1>
           Legends of Trivia
         </h1>
         <Preload />
-        <br/>
-        <div className="avatarWrapper">
-          <Gravatar email="nathan.froese21@gmail.com" name="nathan froese"/>
+        <div>
+          <h2>Waiting for players to Join Room #{this.props.RoomId}</h2>
         </div>
-      </div>
-      <h2>Waiting for players to Join Room #{this.props.RoomId}</h2>
-      </section>
+        <div className="avatarWrapper">
+          <Avatar twitterHandle="nathanfroese21"/>
+          <Avatar twitterHandle="xopt1x" />
+          <Avatar twitterHandle="don_burks" />
+          <Avatar name="not marry poppins"/>
+        </div>
       </div>
     )
   }
