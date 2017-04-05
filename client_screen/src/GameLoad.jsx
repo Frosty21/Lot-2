@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 // import Avatar from 'react-avatar';
 import Gravatar from 'react-gravatar';
-import BackgroundImage from 'react-background-image-loader';
 
 export default class GameLoad extends Component {
 
