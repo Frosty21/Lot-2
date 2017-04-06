@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Answer from './Answer.jsx';
 
 export default class GamePlay extends Component {
 // TODO: Warning message wipe
@@ -27,25 +28,8 @@ export default class GamePlay extends Component {
                         <p className="question"> Question: What is the squareRoot of blank in the desert? </p>
                       </div>
 
-                      <div className="answers-box">
+                      <Answer gameAnswers={this.props.gameAnswers}/>
 
-                        <div className="answer">
-                         <p> This is answer 1. </p>
-                        </div>
-
-                        <div className="answer">
-                         <p> This is answer 2. </p>
-                        </div>
-
-                        <div className="answer">
-                         <p> This is answer 3. </p>
-                        </div>
-
-                        <div className="answer">
-                         <p> This is answer 4. </p>
-                        </div>
-
-                      </div>
                     </div>
                 </div>
                 <div className="col2">

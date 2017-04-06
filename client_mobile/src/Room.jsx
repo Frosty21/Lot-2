@@ -21,7 +21,6 @@ export default class Room extends Component {
     this.handleClickAnswerB= this.handleClickAnswerB.bind(this);
     this.handleClickAnswerC= this.handleClickAnswerC.bind(this);
     this.handleClickAnswerD= this.handleClickAnswerD.bind(this);
-    this.gameRoundLogic = this.gameRoundLogic.bind(this);
     this.handleClickStartGame = this.handleClickStartGame.bind(this);
     this.socket = io.connect('http://localhost:3002', {
       query: 'token=' + this.state.token
