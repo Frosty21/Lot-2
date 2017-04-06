@@ -4,10 +4,7 @@
   "description": "Legends of Trivia [LoT]",
   "main": "server.js",
   "scripts": {
-    "start": "DEBUG=express:* node server.js",
-    "start-screen": "DEBUG=express:* node screenserver.js screen",
-    "start-mobile": "DEBUG=express:* node mobileserver.js mobile",
-    "build-screen": "node_modules/.bin/webpack --config client_screen/webpack.config.js",
+    "mobile": "DEBUG=express:* node server.js mobile",
     "build-mobile": "node_modules/.bin/webpack --config client_mobile/webpack.config.js"
   },
   "author": "",

@@ -1,12 +1,12 @@
 const path = require('path');
 const webpack = require('webpack');
 
-module.exports = function(root) {
+module.exports = function() {
   return {
   devtool: 'source-map',
-  entry: root + '/src/index.jsx',
+  entry: './client_mobile' + '/src/index.jsx',
   output: {
-    path: path.join(__dirname, root, 'build'),
+    path: path.join(__dirname, './client_mobile', 'build'),
     filename: 'bundle.js',
     publicPath: '/'
   },
@@ -15,7 +15,7 @@ module.exports = function(root) {
       {
         test: /\.jsx?$/,
         loaders: ['babel-loader'],
-        include: path.join(__dirname, root, 'src')
+        include: path.join(__dirname, './client_mobile', 'src')
       },
       {
         test: /\.scss$/,
