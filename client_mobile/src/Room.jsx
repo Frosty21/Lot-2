@@ -11,7 +11,6 @@ export default class Room extends Component {
       answerB: false,
       answerC: false,
       answerD: false,
-      isDisabled: '',
       buttonsLocked: false,
       startGame: 0,
       token: localStorage.getItem('token'),
@@ -79,7 +78,6 @@ export default class Room extends Component {
       return (
           <Buttons
             buttonLock={this.state.buttonsLocked}
-            // disabled={this.state.isDisabled}
             answerA={this.handleClickAnswerA}
             answerB={this.handleClickAnswerB}
             answerC={this.handleClickAnswerC}

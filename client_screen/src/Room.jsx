@@ -31,11 +31,6 @@ export default class Room extends Component {
 
     this.socket.emit('join', {room: room });
 
-    // this.socket.on(room, (data) => {
-    // }).on('disconnect', () => {
-    //   console.log('disconnected');
-    // });
-
     this.socket.on('users', data => {
       console.log('users list: ', data);
       this.setState({ users: data.users });
