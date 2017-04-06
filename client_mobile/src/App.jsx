@@ -50,7 +50,7 @@ export default class App extends Component {
     const token = localStorage.getItem('token');
     console.log(token)
     if (token) {
-      axios.post('/login', {
+      axios.post('http://legendsoftrivia.com:80/login', {
         token: token
       }).then( (res) => {
         const jsObj = JSON.parse(res.request.response);
@@ -77,7 +77,7 @@ export default class App extends Component {
     e.preventDefault();
 
     // TODO: check passwords are the same
-    axios.post('/register', {
+    axios.post('http://legendsoftrivia.com:80/register', {
       username: this.state.username,
       email: this.state.email,
       first_name: this.state.first_name,
@@ -107,7 +107,7 @@ export default class App extends Component {
     console.log('Button Clicked');
     e.preventDefault();
 
-    axios.post('/login', {
+    axios.post('http://legendsoftrivia.com:80/login', {
       email: this.state.email,
       password: this.state.password
     }).then( (res) => {
@@ -132,7 +132,7 @@ export default class App extends Component {
       const roomNumber = event.target.value;
       console.log('enter');
 
-      axios.post('/joinroom', {
+      axios.post('http://legendsoftrivia.com:80/joinroom', {
         room: roomNumber,
         username: this.state.username
       }).then( (res) => {
