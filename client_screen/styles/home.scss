@@ -217,27 +217,19 @@ text-align:center;
   overflow:hidden;    /* This chops off any overhanging divs */
 }
 /* holy grail 3 column settings */
-.holygrail {
-    background: black;      /* Right column background colour */
-}
   .holygrail .colmid {
       float:left;
       width:200%;
       margin-left:-200px;   /* Width of right column */
       position:relative;
       right:100%;
-      background: url(../img/3.jpg) no-repeat;
-      background-size: 100%;
-      background-position: center center;
-      /* Centre column background colour */
   }
   .holygrail .colleft {
       float:left;
       width:100%;
       margin-left:-50%;
       position:relative;
-      left:400px;           /* Left column width + right column width */
-      background: black;     /* Left column background colour */
+      left:400px;           /* Left column width + right column width */    /* Left column background colour */
   }
   .holygrail .col1wrap {
       float:left;
