@@ -9,7 +9,7 @@ export default class GamePlay extends Component {
     return (
 <div>
   <div className="question-number">
-    <p className="question-number-text">Question 1</p>
+    <h2 className="question-number-text">Rounds Left: {this.props.roundNumber}</h2>
   </div>
 
   <div className="timer-number">

@@ -64,7 +64,7 @@ export default class Room extends Component {
     // TODO: Show all User Cards in a loading screen, suspense is good, use react-delay-render
     if ( this.state.startGame === true && this.state.gameEnd === false) {
       return (
-          <GamePlay Users={this.state.users} gameQuestion={this.state.gameQuestion} RoundNumber={this.state.roundNumber} gameAnswers={this.state.gameAnswers} gameQuestion={this.state.gameQuestion}/>
+          <GamePlay Users={this.state.users} gameQuestion={this.state.gameQuestion} roundNumber={this.state.roundNumber} gameAnswers={this.state.gameAnswers}/>
       )
     }
     if ( this.state.gameEnd === true ) {
