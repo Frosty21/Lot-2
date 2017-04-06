@@ -69,7 +69,7 @@ export default class Room extends Component {
     }
     if ( this.state.gameEnd === true ) {
       return (
-          <GameEnd Users={this.state.users} />
+          <GameEnd Users={this.state.users} winner={this.state.winner}/>
       )
     }
   }
