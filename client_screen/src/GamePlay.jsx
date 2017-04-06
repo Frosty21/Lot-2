@@ -26,11 +26,9 @@ export default class GamePlay extends Component {
                 <div className="col1wrap">
                     <div className="col1">
                       <div className="question-box">
-                        <p className="question"> Question: What is the squareRoot of blank in the desert? </p>
+                        <p className="question">{this.props.gameQuestion}</p>
                       </div>
-
                       <Answer gameAnswers={this.props.gameAnswers}/>
-
                     </div>
                 </div>
                 <div className="col2">
