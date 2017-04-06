@@ -12,6 +12,7 @@ export default class GamePlay extends Component {
 
   <div className="timer-number">
     <p className="question-number-text">Timer</p>
+    <CountdownTimer secondsRemaining="10" />
   </div>
 
   <div id="wrapper">
@@ -79,3 +80,30 @@ export default class GamePlay extends Component {
 
   )}
 }
+
+var CountdownTimer = React.createClass({
+  getInitialState: function() {
+    return {
+      secondsRemaining: 0
+    };
+  },
+  tick: function() {
+    this.setState({secondsRemaining: this.state.secondsRemaining - 1});
+    if (this.state.secondsRemaining === -1) {
+      clearInterval(this.interval);
+      this.setState({secondsRemaining: this.state.secondsRemaining + 11});
+    }
+  },
+  componentDidMount: function() {
+    this.setState({ secondsRemaining: this.props.secondsRemaining });
+    this.interval = setInterval(this.tick, 1000);
+  },
+  componentWillUnmount: function() {
+    clearInterval(this.interval);
+  },
+  render: function() {
+    return (
+      <div>Seconds Remaining: {this.state.secondsRemaining}</div>
+    );
+  }
+});
