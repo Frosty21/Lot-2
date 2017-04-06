@@ -114,14 +114,17 @@ h2 {
 }
 
 .question-box {
-  border: black solid 2px;
+  border: 10px solid rgba(255,255,255,1);
+  box-shadow: 0 0 5px black, 0 0 10px black, 0 0 15px black, 0 0 20px black, 0 0 35px black, 0 0 40px black, 0 0 50px white, 0 0 75px white;
   display: inline-block;
   padding: 20px;
 }
 
 .question {
-  font-size: 15px;
   margin: 0;
+  font: normal 30px/1 "Luckiest Guy", Helvetica, sans-serif;
+  color: rgba(255,255,255,1);
+  text-shadow: 0 0 5px black, 0 0 10px black, 0 0 15px black, 0 0 20px black, 0 0 35px black, 0 0 40px black, 0 0 50px white, 0 0 75px white;
 }
 
 .question-number {
@@ -164,8 +167,10 @@ h2 {
 
 .answer {
   flex: 1;
-  border: 2px solid;
   padding: 100px 0;
+  font: normal 25px/1 "Luckiest Guy", Helvetica, sans-serif;
+  color: rgba(255,255,255,1);
+  text-shadow: 0 0 5px black, 0 0 10px black, 0 0 15px black, 0 0 20px black, 0 0 35px black, 0 0 40px black, 0 0 50px white, 0 0 75px white;
 }
 
 .answer:nth-child(odd) {
