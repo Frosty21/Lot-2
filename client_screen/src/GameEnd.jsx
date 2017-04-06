@@ -8,7 +8,7 @@ export default class GameEnd extends Component {
       loading: true
     }
   }
-  
+
   componentDidMount() {
     if (this.state.loading){
       endParty();
@@ -20,7 +20,12 @@ export default class GameEnd extends Component {
     return(
       <div>
         <h1> Game Over </h1>
-        <canvas id="drawing_canvas"></canvas>
+        <div className="winner">
+        <h2> The winner is ... </h2>
+        <div className="winnerScore">
+
+        </div>
+        </div>
       </div>
     )
   }
