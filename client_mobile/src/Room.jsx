@@ -41,7 +41,7 @@ export default class Room extends Component {
       console.log('users list: ', data);
     });
 
-    this.socket.on('clientGameStarted', () => {
+    this.socket.on('gameStarted', () => {
       this.setState({ startGame: 1 });
     });
 

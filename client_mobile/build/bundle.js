@@ -17576,7 +17576,7 @@ var Room = function (_Component) {
         console.log('users list: ', data);
       });
 
-      this.socket.on('clientGameStarted', function () {
+      this.socket.on('gameStarted', function () {
         _this2.setState({ startGame: 1 });
       });
 
