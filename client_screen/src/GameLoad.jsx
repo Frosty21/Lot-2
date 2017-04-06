@@ -17,12 +17,12 @@ export default class GameLoad extends Component {
         <div>
           <h2>Waiting for players to Join Room #{this.props.RoomId}</h2>
         </div>
-        <div className="avatarWrapper">
+        {/*<div className="avatarWrapper">
           <Avatar twitterHandle="nathanfroese21"/>
           <Avatar twitterHandle="xopt1x" />
           <Avatar twitterHandle="don_burks" />
           <Avatar name="not marry poppins"/>
-        </div>
+        </div>*/}
       </div>
     )
   }
