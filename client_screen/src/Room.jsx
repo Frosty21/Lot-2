@@ -28,7 +28,7 @@ export default class Room extends Component {
   }
 
   componentDidMount () {
-    
+
     const room = this.props.RoomId;
 
     this.socket.emit('join', {room: room });
@@ -44,6 +44,7 @@ export default class Room extends Component {
 
     this.socket.on('roundChange', (data) => {
       console.log('Screen: round change: ', data.gameQuestion);
+      console.log('gameAnswers:', data.gameAnswers);
       this.setState({ startGame: true, gameQuestion: data.gameQuestion, gameAnswers: data.gameAnswers, roundNumber: data.roundNumber });
     });
 
@@ -63,7 +64,7 @@ export default class Room extends Component {
     // TODO: Show all User Cards in a loading screen, suspense is good, use react-delay-render
     if ( this.state.startGame === true && this.state.gameEnd === false) {
       return (
-          <GamePlay Users={this.state.users} gameQuestion={this.state.gameQuestion} RoundNumber={this.state.roundNumber} />
+          <GamePlay Users={this.state.users} gameQuestion={this.state.gameQuestion} RoundNumber={this.state.roundNumber} gameAnswers={this.state.gameAnswers} gameQuestion={this.state.gameQuestion}/>
       )
     }
     if ( this.state.gameEnd === true ) {
