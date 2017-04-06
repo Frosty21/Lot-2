@@ -16,56 +16,81 @@ export default class Room extends Component {
       token: localStorage.getItem('token'),
       username: localStorage.getItem('username')
     }
+
     this.handleClickAnswerA= this.handleClickAnswerA.bind(this);
     this.handleClickAnswerB= this.handleClickAnswerB.bind(this);
     this.handleClickAnswerC= this.handleClickAnswerC.bind(this);
     this.handleClickAnswerD= this.handleClickAnswerD.bind(this);
     this.handleClickStartGame = this.handleClickStartGame.bind(this);
+
     this.socket = io.connect('http://localhost:3002', {
-      query: 'token=' + this.state.token
+      query: 'token=' + this.state.token,
+      'force new connection': true
     });
+
+
   }
 
   componentDidMount () {
-    const room = this.props.RoomId;
-    const username = this.state.username;
-    this.socket.emit('join', {room: room , username: username });
 
-    this.socket.on('gameStarted', data => {
-      if(data){
-        this.setState({ startGame: 1 });
-      }
+    const room = this.props.RoomId;
+
+    this.socket.emit('join', { room: room });
+
+    this.socket.on('users', data => {
+      console.log('users list: ', data);
     });
 
-    this.socket.on('roundChange', data => {
+    this.socket.on('clientGameStarted', () => {
+      this.setState({ startGame: 1 });
+    });
+
+    this.socket.on('resetButtons', (data) => {
       this.setState({ buttonsLocked: false });
+    });
+
+    this.socket.on('gameEnded', (data) => {
+      console.log('GAME END: ', data);
     });
   }
 
+
   handleClickAnswerA() {
-    this.socket.emit('answer', {answer: 'a', username: this.state.username});
+    if ( this.state.buttonsLocked === false){
+      this.socket.emit('answer', {answer: 'a', username: this.state.username});
+      console.log("button pressed");
+    }
     this.setState({ buttonsLocked: true })
   }
 
   handleClickAnswerB() {
-    this.socket.emit('answer', {answer: 'b', username: this.state.username});
+    if ( this.state.buttonsLocked === false){
+      this.socket.emit('answer', {answer: 'b', username: this.state.username});
+      console.log("button pressed");
+    }
     this.setState({ buttonsLocked: true })
   }
 
   handleClickAnswerC() {
-    this.socket.emit('answer', {answer: 'c', username: this.state.username});
+    if ( this.state.buttonsLocked === false){
+      this.socket.emit('answer', {answer: 'c', username: this.state.username});
+      console.log("button pressed");
+    }
     this.setState({ buttonsLocked: true })
   }
 
   handleClickAnswerD() {
-    this.socket.emit('answer', {answer: 'd', username: this.state.username});
+    if ( this.state.buttonsLocked === false){
+      this.socket.emit('answer', {answer: 'd', username: this.state.username});
+      console.log("button pressed");
+    }
     this.setState({ buttonsLocked: true })
   }
 
   handleClickStartGame() {
     console.log("Start");
     this.socket.emit('gameStart', this.props.RoomId);
-    this.setState({ startGame: 1});
+    this.setState({ startGame: 1 });
   }
 
   render() {
@@ -77,12 +102,11 @@ export default class Room extends Component {
     if ( this.state.startGame >= 1) {
       return (
           <Buttons
-            buttonLock={this.state.buttonsLocked}
             answerA={this.handleClickAnswerA}
             answerB={this.handleClickAnswerB}
             answerC={this.handleClickAnswerC}
             answerD={this.handleClickAnswerD}
-            handleClickStartGame={this.handleClickStartGame}/>
+            handleClickStartGame={this.handleClickStartGame} />
       )
     }
     if ( this.state.gameEnd >= 1 ) {

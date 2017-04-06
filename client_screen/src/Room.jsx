@@ -31,7 +31,7 @@ export default class Room extends Component {
 
     const room = this.props.RoomId;
 
-    this.socket.emit('join', {room: room });
+    this.socket.emit('join', { room: room });
 
     this.socket.on('users', data => {
       console.log('users list: ', data);
