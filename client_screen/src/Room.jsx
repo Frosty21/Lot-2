@@ -16,7 +16,9 @@ export default class Room extends Component {
       gameQuestion: '',
       gameAnswers: [],
       startGame: false,
-      gameEnd: false
+      gameEnd: false,
+      winner: '',
+      usersScores: {}
       // gameQuestion['Question', 'RightAnswer', 'WrongAnswer1', 'WrongAnswer2', 'WrongAnswer3]
     }
     this.socket = io.connect('http://localhost:3002', {
@@ -47,7 +49,7 @@ export default class Room extends Component {
 
     this.socket.on('gameEnded', (data) => {
       console.log('GAME END: ', data);
-      this.setState({ gameEnd: true});
+      this.setState({ gameEnd: true, winner: data.winner, usersScores: data.usersScores });
     });
   }
 
