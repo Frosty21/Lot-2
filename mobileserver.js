@@ -9,7 +9,7 @@ const config = require(configs[process.argv[2]] || configs.screen);
 
 new WebpackDevServer(webpack(config), {
     proxy: {
-        "*": 'http://localhost:3002'
+        "*": 'http://legendsoftrivia:80'
     },
     contentBase: config.output.path,
     publicPath: config.output.publicPath,

@@ -24,8 +24,8 @@ export default class Room extends Component {
     this.handleClickStartGame = this.handleClickStartGame.bind(this);
 
     this.socket = io.connect('http://localhost:3002', {
-      query: 'token=' + this.state.token,
-      'force new connection': true
+      query: 'token=' + this.state.token
+      // 'force new connection': true
     });
 
 
@@ -41,11 +41,13 @@ export default class Room extends Component {
       console.log('users list: ', data);
     });
 
-    this.socket.on('clientGameStarted', () => {
+    this.socket.on('gameStarted', (data) => {
+      console.log('game started: ', data);
       this.setState({ startGame: 1 });
     });
 
     this.socket.on('resetButtons', (data) => {
+      console.log('resetbuttons: ', data);
       this.setState({ buttonsLocked: false });
     });
 
