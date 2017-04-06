@@ -141,16 +141,13 @@ h2 {
 }
 
 .timer-number {
-  border: black solid 2px;
   display: inline-block;
-  text-align: center;
-  padding: 30px;
+  padding: 60px;
   bottom: 0;
   right: 0;
   position: fixed;
   width: 200px;
   z-index: 11;
-  background-color: white;
 }
 
 .question-number-text {

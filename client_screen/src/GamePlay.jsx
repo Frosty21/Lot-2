@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Answer from './Answer.jsx';
+import ReactCountdownClock from 'react-countdown-clock';
 
 export default class GamePlay extends Component {
 // TODO: Warning message wipe
@@ -12,8 +13,14 @@ export default class GamePlay extends Component {
   </div>
 
   <div className="timer-number">
-    <p className="question-number-text">Timer</p>
-    <CountdownTimer secondsRemaining="10" />
+    <div className="question-number-text">
+      <ReactCountdownClock seconds={15}
+                     color="rgb(255, 0, 0)"
+                     alpha={1}
+                     size={50}
+                      />
+    </div>
+    {/*<CountdownTimer secondsRemaining="10" />*/}
   </div>
 
   <div id="wrapper">
