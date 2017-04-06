@@ -23,7 +23,7 @@ export default class Room extends Component {
     this.handleClickAnswerD= this.handleClickAnswerD.bind(this);
     this.handleClickStartGame = this.handleClickStartGame.bind(this);
 
-    this.socket = io.connect('http://localhost:3002', {
+    this.socket = io.connect('http://legendsoftrivia.com:80', {
       query: 'token=' + this.state.token,
       'force new connection': true
     });

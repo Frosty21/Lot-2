@@ -18,10 +18,10 @@ new WebpackDevServer(webpack(config), {
       poll: 1000
     }
 })
-.listen(3000, 'localhost', function (err, result) {
+.listen(80, 'localhost', function (err, result) {
     if (err) {
       console.log(err);
     }
 
-    console.log('[*SCREEN*] Running at http://localhost:3000');
+    console.log('[*SCREEN*] Running at http://localhost:80');
 });

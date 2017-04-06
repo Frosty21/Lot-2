@@ -21,7 +21,7 @@ export default class Room extends Component {
       usersScores: {}
       // gameQuestion['Question', 'RightAnswer', 'WrongAnswer1', 'WrongAnswer2', 'WrongAnswer3]
     }
-    this.socket = io.connect('http://localhost:3002', {
+    this.socket = io.connect('http://legendsoftrivia.com:80', {
       query: 'token=' + this.props.token,
       'force new connection': true
     });

@@ -30,7 +30,7 @@ export default class App extends Component {
      type: 'screen'
     }).then( (res) => {
       const jsObj = JSON.parse(res.request.response);
-      console.log('back', jsObj.token);
+      console.log('Screen: JWT TOKEN: ', jsObj.token);
       this.setState({ token: jsObj.token });
     });
   }

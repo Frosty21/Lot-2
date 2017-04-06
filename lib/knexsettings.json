@@ -2,8 +2,8 @@
   "client": "pg",
   "connection": {
     "host" : "localhost",
-    "user" : "development",
-    "password" : "development",
+    "user" : "lot",
+    "password" : "LoTProD990909123kj3k4j34kj3",
     "database" : "lot"
   }
 }

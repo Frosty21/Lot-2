@@ -6,7 +6,7 @@ const jwtSecret = 'f5baaf169e93e37212cfce26de6b983df2342e9a736a16f92a3390844c721
 module.exports = joinroom;
 
   joinroom.post('/', (req, res) => {
-    console.log('Enter Join Room', req.body);
+    console.log('/joinroom: Joining Room', req.body);
 
     // TODO: if req.body.screen || req.body.email don't exist, do something?
 

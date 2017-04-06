@@ -8,7 +8,7 @@ const jwtSecret = 'f5baaf169e93e37212cfce26de6b983df2342e9a736a16f92a3390844c721
 module.exports = (db) => {
 
   login.post('/', (req, res) => {
-    console.log('being login', req.body);
+    console.log('/login: ', req.body);
     if (req.body.token) {
       console.log('authenticating token');
       const token = req.body.token;
@@ -23,7 +23,7 @@ module.exports = (db) => {
 
     // TODO: if req.body.screen || req.body.email don't exist, do something?
     if ( req.body.type === 'screen' ) {
-      console.log('Screen login start: ', req.body);
+      console.log('/login: Screen login start: ', req.body);
       // This is a screen, supply token with room ID
       // TODO: Ensure the ROOM ID does not exist yet
       const screenProfile = {

@@ -4,7 +4,7 @@
   "description": "Legends of Trivia [LoT]",
   "main": "server.js",
   "scripts": {
-    "start": "DEBUG=express:* node server.js",
+    "start": "DEBUG=express:* babel-node server.js",
     "start-screen": "DEBUG=express:* node screenserver.js screen",
     "start-mobile": "DEBUG=express:* node mobileserver.js mobile",
     "build-screen": "node_modules/.bin/webpack --config client_screen/webpack.config.js",
@@ -16,6 +16,7 @@
     "axios": "^0.15.3",
     "bcrypt": "^1.0.2",
     "body-parser": "^1.17.1",
+    "cors": "^2.8.3",
     "express": "4.15.2",
     "file-loader": "^0.11.1",
     "http-proxy-middleware": "^0.17.4",
