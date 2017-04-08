@@ -21,11 +21,28 @@ Screen dsiplays the questions and selctions also showing the results at the end 
 1. Fork and clone this repo
 2. In the terminal within your root dir type **npm install**
 3. In current tab install postgres db and create database lot
-4. Then in current tab exit out of postrges and type **knex migrate: latest** bo set the tables within postgres db
+4. Then in current tab exit out of postrges and type **knex migrate: latest** to set the tables within postgres db
 5. Then type **knex seed: run** to insert data within the db tables of lot
 6. In three terminal tabs type **npm start**, **npm run start-mobile** and **npm run start-screen**
 7. Have two internet browsers open and type **localhost:3000** and in the other **localhost:3001**
 8. Now you have a running game. To add different devices youll need to open your port on your db device in order for them to connect (errors on logging more than one player locally). 
+
+## Developer Documentation
+
+### Tools Used:
+* [React](https://facebook.github.io/react/)
+* [Socket.io](http://socket.io/)
+* [Node](https://nodejs.org/en/)
+* [Express](http://expressjs.com/)
+* [Postgres](https://www.postgresql.org/)
+
+### Front-End(React, Socket.io)
+
+#### Server
+The server is built using Node.js and Express. The Express server is created first and then passed into Socket.io as parameter. When the application is started the listen() function activates both the Express and socket server.
+
+#### Sockets
+Rooms in Socket.io don't have to be created, one is created when a socket joins it. The first socket that joins it is the main display(the gameboard). Whenever a code is validated, a client joins that same room on the server side.
 
 ## Future Improvements:
 ### Mobile
@@ -49,23 +66,6 @@ Screen dsiplays the questions and selctions also showing the results at the end 
 . addition of kings cup
 . addition of beer pong
 . addition of a phaser 2d game (example worms, mario kart, golden eye)
-
-## Developer Documentation
-
-### Tools Used:
-* [React](https://facebook.github.io/react/)
-* [Socket.io](http://socket.io/)
-* [Node](https://nodejs.org/en/)
-* [Express](http://expressjs.com/)
-* [Postgres](https://www.postgresql.org/)
-
-### Front-End(React, Socket.io)
-
-#### Server
-The server is built using Node.js and Express. The Express server is created first and then passed into Socket.io as parameter. When the application is started the listen() function activates both the Express and socket server.
-
-#### Sockets
-Rooms in Socket.io don't have to be created, one is created when a socket joins it. The first socket that joins it is the main display(the gameboard). Whenever a code is validated, a client joins that same room on the server side.
 
 ### The Developers
 * [E da man](https://github.com/opt1x)
